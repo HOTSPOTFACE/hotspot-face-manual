@@ -214,7 +214,7 @@
         <li>Save and reboot</li>
       </ol>
 
-      <div class="tip"><strong>Tip:</strong> Enable Auto-Discovery if your Pi-Star IP is unknown.</div>
+      <div class="tip"><strong>Tip:</strong> If you don't know your Pi-Star's IP address, enable Auto-Discovery and the Hotspot-Face will find it automatically.</div>
     </div>
 
     <!-- LAYOUT -->
@@ -229,6 +229,17 @@
         <tr><td><span class="box-display box-grey">Date</span></td><td>Current date</td></tr>
         <tr><td><span class="box-display box-grey">Connection</span></td><td>WiFi/Hotspot + IP</td></tr>
       </table>
+
+      <h3>Status Indicators</h3>
+      <ul>
+        <li><strong>Idle:</strong> No active transmission</li>
+        <li><strong>TX:</strong> Active transmission (displayed in red)</li>
+        <li><strong>WiFi Off:</strong> No WiFi connection</li>
+        <li><strong>No Pi-Star:</strong> Cannot connect to Pi-Star</li>
+        <li><strong>Auth Error:</strong> Incorrect Pi-Star credentials</li>
+        <li><strong>Connected successfully</strong></li>
+        <li><strong>Connection failed</strong></li>
+      </ul>
     </div>
 
     <!-- OPERATION -->
@@ -256,21 +267,28 @@
     <!-- ADVANCED -->
     <div id="advanced" class="section">
       <h2>7. Advanced Features</h2>
+
       <h3>Auto-Discovery</h3>
       <p>Uses mDNS + ping scanning to detect Pi-Star on your LAN.</p>
 
-      <h3>Dual IP</h3>
+      <h3>Dual IP Storage</h3>
       <p>Stores both WiFi and Hotspot IPs for seamless switching.</p>
+
+      <h3>Connection Recovery</h3>
+      <ul>
+        <li>Auto reconnect</li>
+        <li>Fallback IP switching</li>
+      </ul>
     </div>
 
     <!-- RESET -->
     <div id="reset" class="section">
       <h2>8. Factory Reset</h2>
       <div class="warning">
-        Resets ALL stored settings.
+        This will erase all stored settings.
       </div>
       <ol>
-        <li>Press & hold header 10 sec</li>
+        <li>Press & hold header for 10 seconds</li>
         <li>Wait for countdown</li>
         <li>Device reboots into Setup Mode</li>
       </ol>
@@ -281,13 +299,20 @@
       <h2>9. Troubleshooting</h2>
 
       <h3>No Pi-Star</h3>
-      <ul><li>Check IP</li><li>Ensure Pi-Star is on</li></ul>
+      <ul>
+        <li>Verify IP</li>
+        <li>Ensure Pi-Star is powered</li>
+      </ul>
 
       <h3>Auth Error</h3>
-      <ul><li>Default: pi-star / raspberry</li></ul>
+      <ul>
+        <li>Default login: pi-star / raspberry</li>
+      </ul>
 
       <h3>No Web Portal</h3>
-      <ul><li>Go to 192.168.4.1 in AP mode</li></ul>
+      <ul>
+        <li>Visit 192.168.4.1 in AP mode</li>
+      </ul>
     </div>
 
     <!-- TECH INFO -->
@@ -296,7 +321,8 @@
       <ul>
         <li>WiFi: 2.4GHz only</li>
         <li>Power: 5V USB-C</li>
-        <li>Temp: 0–70°C</li>
+        <li>Typical: 200mA</li>
+        <li>Operating temp: 0–70°C</li>
       </ul>
     </div>
 
@@ -305,15 +331,18 @@
       <h2>11. Safety</h2>
       <ul>
         <li>Indoor use only</li>
-        <li>No moisture exposure</li>
+        <li>Avoid moisture</li>
+        <li>Use approved power sources</li>
       </ul>
     </div>
 
     <!-- SUPPORT -->
     <div id="support" class="section">
       <h2>12. Support</h2>
-      <p>Developer: Robert Eddy (M3URE)</p>
-      <p>Email: roberteddy1234@gmail.com</p>
+      <p><strong>Developer:</strong> Robert Eddy (M3URE)</p>
+      <p><strong>Email:</strong> roberteddy1234@gmail.com</p>
+      <p><strong>Version:</strong> 2.0</p>
+      <p><strong>Release Date:</strong> November 2025</p>
     </div>
 
   </div>

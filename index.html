@@ -1,412 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hotspot-Face Manual v2.0</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotspot-Face Manual v2.0</title>
 
-<style>
-  :root {
-    --bg: #f5f7fb;
-    --bg-alt: #ffffff;
-    --text: #111827;
-    --text-muted: #6b7280;
-    --primary: #1e90ff;   /* Hotspot-Face blue */
-    --primary-soft: #dbeafe;
-    --accent: #f97316;    /* Hotspot-Face orange */
-    --sidebar-bg: #0b1220;
-    --sidebar-border: #111827;
-    --card-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
-  }
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-alt: #ffffff;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --primary: #1e90ff;
+      --primary-soft: #dbeafe;
+      --accent: #f97316;
+      --sidebar-bg: #0b1220;
+      --sidebar-border: #111827;
+      --card-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
+    }
 
-  body.dark {
-    --bg: #020617;
-    --bg-alt: #020617;
-    --text: #e5e7eb;
-    --text-muted: #9ca3af;
-    --primary: #38bdf8;
-    --primary-soft: #0b1120;
-    --accent: #fb923c;
-    --sidebar-bg: #020617;
-    --sidebar-border: #0f172a;
-    --card-shadow: 0 2px 16px rgba(15, 23, 42, 0.9);
-  }
+    body.dark {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --primary: #38bdf8;
+      --primary-soft: #0b1120;
+      --accent: #fb923c;
+      --sidebar-bg: #020617;
+      --sidebar-border: #0f172a;
+      --card-shadow: 0 2px 16px rgba(15, 23, 42, 0.9);
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
-    background: radial-gradient(circle at top, #e0f2fe 0, var(--bg) 50%);
-    color: var(--text);
-    line-height: 1.6;
-    scroll-behavior: smooth;
-  }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e0f2fe 0, var(--bg) 50%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
 
-  .container {
-    display: flex;
-    min-height: 100vh;
-  }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
 
-  /* Sidebar */
-  .sidebar {
-    width: 260px;
-    background: linear-gradient(180deg, var(--sidebar-bg), #020617);
-    color: #e5e7eb;
-    padding: 20px 18px 24px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    border-right: 1px solid var(--sidebar-border);
-    overflow-y: auto;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-
-  .brand-logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .brand-logo img {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .brand-text-title {
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-  }
-
-  .brand-text-sub {
-    font-size: 12px;
-    color: #9ca3af;
-  }
-
-  .sidebar-divider {
-    height: 1px;
-    background: radial-gradient(circle, #1f2937, transparent);
-    margin: 14px 0 12px;
-  }
-
-  .menu-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: #6b7280;
-    margin-bottom: 8px;
-  }
-
-  .nav-link-group {
-    margin-bottom: 16px;
-  }
-
-  .sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #e5e7eb;
-    text-decoration: none;
-    padding: 7px 8px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-bottom: 3px;
-    transition: background 0.15s, color 0.15s, transform 0.1s;
-  }
-
-  .sidebar a span.icon {
-    width: 18px;
-    text-align: center;
-    font-size: 15px;
-    opacity: 0.9;
-  }
-
-  .sidebar a span.label {
-    flex: 1;
-  }
-
-  .sidebar a:hover {
-    background: rgba(148, 163, 184, 0.2);
-    color: #f9fafb;
-    transform: translateX(1px);
-  }
-
-  .sidebar a.primary-link {
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    color: #f9fafb;
-    margin-top: 4px;
-  }
-
-  .sidebar a.primary-link:hover {
-    transform: translateX(1px) translateY(-1px);
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
-  }
-
-  .sidebar-footer {
-    margin-top: 18px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(148, 163, 184, 0.35);
-    font-size: 11px;
-    color: #6b7280;
-  }
-
-  /* Content + top bar */
-  .content-wrapper {
-    margin-left: 260px;
-    width: calc(100% - 260px);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    backdrop-filter: blur(14px);
-    background: linear-gradient(
-      to right,
-      rgba(248, 250, 252, 0.92),
-      rgba(241, 245, 249, 0.92)
-    );
-    border-bottom: 1px solid rgba(148, 163, 184, 0.4);
-    padding: 10px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  body.dark .topbar {
-    background: linear-gradient(
-      to right,
-      rgba(15, 23, 42, 0.95),
-      rgba(15, 23, 42, 0.95)
-    );
-    border-bottom-color: #1f2937;
-  }
-
-  .topbar-left {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .topbar-title {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text);
-  }
-
-  .topbar-sub {
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 9px;
-    border-radius: 999px;
-    font-size: 11px;
-    background: rgba(37, 99, 235, 0.08);
-    color: #1d4ed8;
-    margin-top: 4px;
-  }
-
-  body.dark .chip {
-    background: rgba(37, 99, 235, 0.3);
-    color: #bfdbfe;
-  }
-
-  .chip-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: #22c55e;
-  }
-
-  .topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .btn-toggle {
-    border-radius: 999px;
-    padding: 5px 10px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: 1px solid rgba(148, 163, 184, 0.7);
-    background: radial-gradient(circle at top left, #e5f2ff, #e5e7eb);
-    cursor: pointer;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: #374151;
-  }
-
-  body.dark .btn-toggle {
-    background: radial-gradient(circle at top left, #0b1120, #020617);
-    border-color: #334155;
-    color: #e5e7eb;
-  }
-
-  .btn-toggle-icon {
-    font-size: 14px;
-  }
-
-  .content {
-    padding: 26px 40px 40px;
-    max-width: 980px;
-  }
-
-  .hero {
-    margin-bottom: 20px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    letter-spacing: 0.03em;
-  }
-
-  .hero-sub {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }
-
-  .hero-meta {
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .hero-meta strong {
-    color: var(--text);
-  }
-
-  .section {
-    background: var(--bg-alt);
-    padding: 22px 22px 20px;
-    border-radius: 10px;
-    margin-bottom: 22px;
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(148, 163, 184, 0.25);
-  }
-
-  .section h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 19px;
-    border-bottom: 2px solid rgba(148, 163, 184, 0.35);
-    padding-bottom: 6px;
-  }
-
-  .section h3 {
-    margin-top: 14px;
-    margin-bottom: 8px;
-    font-size: 15px;
-  }
-
-  ul, ol {
-    margin-top: 4px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0;
-    font-size: 14px;
-  }
-
-  table td, table th {
-    padding: 8px 8px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.3);
-  }
-
-  table th {
-    text-align: left;
-    font-weight: 600;
-  }
-
-  .box-display {
-    display: inline-block;
-    padding: 4px 8px;
-    font-weight: 600;
-    color: white;
-    border-radius: 4px;
-    font-size: 12px;
-  }
-
-  .box-yellow { background: #facc15; }
-  .box-blue { background: #2563eb; }
-  .box-darkblue { background: #1d4ed8; }
-  .box-green { background: #22c55e; }
-  .box-purple { background: #7c3aed; }
-  .box-red { background: #ef4444; }
-  .box-grey { background: #6b7280; }
-
-  .warning {
-    background: rgba(248, 113, 113, 0.12);
-    border-left: 3px solid #ef4444;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-
-  .note {
-    background: rgba(250, 204, 21, 0.12);
-    border-left: 3px solid #facc15;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-
-  .tip {
-    background: rgba(56, 189, 248, 0.12);
-    border-left: 3px solid #0ea5e9;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-
-  @media (max-width: 900px) {
+    /* Sidebar */
     .sidebar {
-      display: none;
+      width: 260px;
+      background: linear-gradient(180deg, var(--sidebar-bg), #020617);
+      color: #e5e7eb;
+      padding: 20px 18px 24px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      border-right: 1px solid var(--sidebar-border);
+      overflow-y: auto;
     }
-    .content-wrapper {
-      margin-left: 0;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .brand-logo img {
       width: 100%;
+      height: 100%;
+      display: block;
     }
+
+    .brand-text-title {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: radial-gradient(circle, #1f2937, transparent);
+      margin: 14px 0 12px;
+    }
+
+    .menu-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .nav-link-group {
+      margin-bottom: 16px;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 7px 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 3px;
+      transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
+
+    .sidebar a span.icon {
+      width: 18px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    .sidebar a span.label {
+      flex: 1;
+    }
+
+    .sidebar a:hover {
+      background: rgba(148, 163, 184, 0.2);
+      color: #f9fafb;
+      transform: translateX(1px);
+    }
+
+    .sidebar a.primary-link {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #f9fafb;
+      margin-top: 4px;
+    }
+
+    .sidebar a.primary-link:hover {
+      transform: translateX(1px) translateY(-1px);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+    }
+
+    .sidebar-footer {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    /* Content + top bar */
+    .content-wrapper {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     .topbar {
-      padding: 8px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to right,
+        rgba(248, 250, 252, 0.92),
+        rgba(241, 245, 249, 0.92)
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 10px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
+    body.dark .topbar {
+      background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.95)
+      );
+      border-bottom-color: #1f2937;
+    }
+
+    .topbar-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .topbar-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .topbar-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #1d4ed8;
+      margin-top: 4px;
+    }
+
+    body.dark .chip {
+      background: rgba(37, 99, 235, 0.3);
+      color: #bfdbfe;
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-toggle {
+      border-radius: 999px;
+      padding: 5px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at top left, #e5f2ff, #e5e7eb);
+      cursor: pointer;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #374151;
+    }
+
+    body.dark .btn-toggle {
+      background: radial-gradient(circle at top left, #0b1120, #020617);
+      border-color: #334155;
+      color: #e5e7eb;
+    }
+
+    .btn-toggle-icon {
+      font-size: 14px;
+    }
+
     .content {
-      padding: 20px 16px 32px;
+      padding: 26px 40px 40px;
+      max-width: 980px;
     }
-  }
-</style>
+
+    .hero {
+      margin-bottom: 20px;
+    }
+
+    .hero img {
+      width: 160px;
+      height: auto;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta strong {
+      color: var(--text);
+    }
+
+    .section {
+      background: var(--bg-alt);
+      padding: 22px 22px 20px;
+      border-radius: 10px;
+      margin-bottom: 22px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 19px;
+      border-bottom: 2px solid rgba(148, 163, 184, 0.35);
+      padding-bottom: 6px;
+    }
+
+    .section h3 {
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    ul, ol {
+      margin-top: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    table td, table th {
+      padding: 8px 8px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    table th {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .box-display {
+      display: inline-block;
+      padding: 4px 8px;
+      font-weight: 600;
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .box-yellow { background: #facc15; }
+    .box-blue { background: #2563eb; }
+    .box-darkblue { background: #1d4ed8; }
+    .box-green { background: #22c55e; }
+    .box-purple { background: #7c3aed; }
+    .box-red { background: #ef4444; }
+    .box-grey { background: #6b7280; }
+
+    .warning {
+      background: rgba(248, 113, 113, 0.12);
+      border-left: 3px solid #ef4444;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .note {
+      background: rgba(250, 204, 21, 0.12);
+      border-left: 3px solid #facc15;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .tip {
+      background: rgba(56, 189, 248, 0.12);
+      border-left: 3px solid #0ea5e9;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none;
+      }
+      .content-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+      .topbar {
+        padding: 8px 16px;
+      }
+      .content {
+        padding: 20px 16px 32px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -481,6 +488,8 @@
     <main class="content">
 
       <section class="hero">
+        <img src="hotspotface_transparent_optimized.png" alt="Hotspot-Face Mascot">
+
         <div class="hero-title">Hotspot-Face</div>
         <div class="hero-sub">
           Touchscreen MMDVM monitor for DMR hotspots running PI-Star.
@@ -522,6 +531,8 @@
           <li>2.8" TFT colour touchscreen (320×240)</li>
           <li>Clear, colour-coded status boxes</li>
           <li>Real-time DMR monitoring</li>
+          <li>Automatic date display</li>
+          <li>Connection mode indicator</li>
         </ul>
 
         <h3>Network</h3>
@@ -529,6 +540,7 @@
           <li>2.4 GHz WiFi</li>
           <li>Automatic mode detection (WiFi vs Hotspot)</li>
           <li>Auto-discovery for PI-Star on your LAN</li>
+          <li>Web configuration portal</li>
         </ul>
 
         <h3>Configuration</h3>
@@ -536,6 +548,7 @@
           <li>On-screen keyboard</li>
           <li>Captive “Setup” portal on first boot</li>
           <li>Factory reset from the touchscreen</li>
+          <li>Custom device name</li>
         </ul>
       </section>
 
@@ -554,6 +567,7 @@
           <li>Open a browser and go to: <code>192.168.4.1</code></li>
           <li>Enter your home WiFi SSID and password.</li>
           <li>Enter your PI-Star IP addresses (WiFi and Hotspot if you use both).</li>
+          <li>Enable Auto-Discovery if unsure of your PI-Star IP.</li>
           <li>Save settings and allow the device to reboot.</li>
         </ol>
 
@@ -611,23 +625,54 @@
       <!-- OPERATION -->
       <section id="operation" class="section">
         <h2>5. Normal Operation</h2>
+
+        <h3>Automatic Operation</h3>
+        <p>After configuration, the Hotspot-Face operates automatically:</p>
         <ul>
-          <li>Device boots and connects to your WiFi.</li>
-          <li>Automatically decides whether to use WiFi or Hotspot IP.</li>
-          <li>Connects to PI-Star and starts listening for activity.</li>
-          <li>Display updates live as transmissions occur.</li>
+          <li>Connects to WiFi on startup</li>
+          <li>Detects whether PI-Star is reachable via WiFi or Hotspot mode</li>
+          <li>Fetches live DMR activity every second</li>
+          <li>Updates callsign, talk group, status, and duration</li>
+        </ul>
+
+        <h3>Network Mode Switching</h3>
+        <ul>
+          <li><strong>WiFi Mode</strong> – When connected to your home network</li>
+          <li><strong>Hotspot Mode</strong> – When connected directly to PI-Star hotspot</li>
+          <li>Automatically switches depending on SSID and network detection</li>
+        </ul>
+
+        <h3>Touch Controls</h3>
+        <ul>
+          <li><strong>Tap header bar</strong> – opens settings</li>
+          <li><strong>Hold header bar 10 seconds</strong> – factory reset</li>
         </ul>
       </section>
 
       <!-- SETTINGS -->
       <section id="settings" class="section">
         <h2>6. Settings Menu</h2>
-        <p>Tap the header bar to open the settings menu on the touchscreen.</p>
+
+        <h3>Accessing Settings</h3>
+        <p>Tap the top header bar to open settings.</p>
+
+        <h3>Settings Options</h3>
+        <table>
+          <tr><th>Setting</th><th>Description</th></tr>
+          <tr><td>Display Name</td><td>Changes the name shown in the header.</td></tr>
+          <tr><td>WiFi SSID</td><td>Select a WiFi network.</td></tr>
+          <tr><td>WiFi Password</td><td>Update your WiFi password.</td></tr>
+          <tr><td>PI-Star WiFi IP</td><td>IP address when PI-Star is on LAN.</td></tr>
+          <tr><td>PI-Star Hotspot IP</td><td>IP address when PI-Star is in hotspot mode.</td></tr>
+          <tr><td>Auto-Discovery</td><td>Automatic PI-Star detection.</td></tr>
+          <tr><td>Exit</td><td>Return to main display.</td></tr>
+        </table>
+
+        <h3>On-Screen Keyboard</h3>
         <ul>
-          <li>Change the display name.</li>
-          <li>Update WiFi SSID and password.</li>
-          <li>Edit PI-Star WiFi and Hotspot IP addresses.</li>
-          <li>Toggle Auto-Discovery on or off.</li>
+          <li>Full QWERTY layout</li>
+          <li>Symbols and number pad</li>
+          <li>Shift, delete, and confirm</li>
         </ul>
       </section>
 
@@ -639,25 +684,35 @@
         <p>The device can scan your network for common PI-Star hostnames and IP ranges.</p>
 
         <h3>Dual IP storage</h3>
-        <p>Stores both WiFi and Hotspot IP addresses so it can switch seamlessly between them.</p>
-
-        <h3>Connection recovery</h3>
         <ul>
-          <li>Automatically retries connections.</li>
-          <li>Can swap between known IPs if one fails.</li>
+          <li>Stores both WiFi and Hotspot IP addresses</li>
+          <li>Automatic mode detection</li>
+          <li>Instant switching between modes</li>
         </ul>
+
+        <h3>Connection Recovery</h3>
+        <ul>
+          <li>Automatic reconnect</li>
+          <li>Fallback to alternate IP if needed</li>
+          <li>Error status messages</li>
+        </ul>
+
+        <h3>Persistent Storage</h3>
+        <p>All settings are saved and restored after reboot.</p>
       </section>
 
       <!-- RESET -->
       <section id="reset" class="section">
         <h2>8. Factory Reset</h2>
         <div class="warning">
-          A factory reset clears all stored WiFi and PI-Star configuration.
+          <strong>Warning:</strong> This will erase all settings.
         </div>
         <ol>
-          <li>Press and hold the header area for around 10 seconds.</li>
-          <li>Watch the on-screen countdown.</li>
-          <li>When reset triggers, allow the device to reboot into Setup mode.</li>
+          <li>Press and hold the header bar</li>
+          <li>Continue holding for around 10 seconds</li>
+          <li>Watch for the “Resetting…” message</li>
+          <li>Release after countdown</li>
+          <li>Device reboots into setup mode</li>
         </ol>
       </section>
 
@@ -665,86 +720,180 @@
       <section id="trouble" class="section">
         <h2>9. Troubleshooting</h2>
 
-        <h3>No PI-Star</h3>
-        <ul>
-          <li>Check that PI-Star is powered and online.</li>
-          <li>Verify the IP address in the settings menu.</li>
-        </ul>
+        <table>
+          <tr><th>Problem</th><th>Solution</th></tr>
 
-        <h3>Auth Error</h3>
-        <ul>
-          <li>Default login is usually: <code>pi-star / raspberry</code>.</li>
-          <li>Update the credentials in PI-Star if you’ve changed them.</li>
-        </ul>
+          <tr>
+            <td>“WiFi Off”</td>
+            <td>
+              <ul>
+                <li>Check WiFi credentials</li>
+                <li>Ensure router is powered</li>
+                <li>Move device closer</li>
+              </ul>
+            </td>
+          </tr>
 
-        <h3>No web portal in Setup mode</h3>
+          <tr>
+            <td>“No PI-Star”</td>
+            <td>
+              <ul>
+                <li>Verify PI-Star IP</li>
+                <li>Ensure PI-Star is powered</li>
+                <li>Enable Auto-Discovery</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>“Auth Error”</td>
+            <td>
+              <ul>
+                <li>Default login: pi-star / raspberry</li>
+                <li>Check if password was changed</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Touchscreen unresponsive</td>
+            <td>
+              <ul>
+                <li>Clean with a soft cloth</li>
+                <li>Reboot device</li>
+                <li>Factory reset if needed</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Can’t access setup page</td>
+            <td>
+              <ul>
+                <li>Connect to “Hotspot-FACE Setup”</li>
+                <li>Go to <code>192.168.4.1</code></li>
+                <li>Disable mobile data</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>LED Indicators</h3>
         <ul>
-          <li>Confirm you are connected to the <strong>Hotspot-FACE Setup</strong> WiFi.</li>
-          <li>Browse to <code>192.168.4.1</code>.</li>
+          <li><strong>Power LED:</strong> Solid = powered</li>
+          <li><strong>Backlight:</strong> On during display activity</li>
         </ul>
       </section>
 
       <!-- TECH -->
       <section id="technical" class="section">
         <h2>10. Technical Information</h2>
+        <h3>Network Requirements</h3>
         <ul>
-          <li>WiFi: 2.4 GHz only</li>
-          <li>Power: 5 V via USB-C</li>
-          <li>Typical draw: ~200 mA</li>
-          <li>Operating temperature: 0–70 °C</li>
+          <li>2.4GHz WiFi</li>
+          <li>DHCP enabled</li>
+          <li>Same network as PI-Star</li>
+        </ul>
+
+        <h3>PI-Star Requirements</h3>
+        <ul>
+          <li>Version 3.4+</li>
+          <li>Admin dashboard enabled</li>
+          <li>Callsign configured</li>
+        </ul>
+
+        <h3>Power Requirements</h3>
+        <ul>
+          <li>5V USB-C</li>
+          <li>Minimum 500mA</li>
+          <li>Typical 200–350mA usage</li>
+        </ul>
+
+        <h3>Environmental</h3>
+        <ul>
+          <li>Operating: 0°C – 70°C</li>
+          <li>Storage: -20°C – 80°C</li>
+          <li>Humidity: 10–90% non-condensing</li>
         </ul>
       </section>
 
       <!-- SAFETY -->
       <section id="safety" class="section">
-        <h2>11. Safety</h2>
+        <h2>11. Safety & Disclaimers</h2>
+
+        <div class="warning">
+          <ul>
+            <li>Indoor use only</li>
+            <li>Do not expose to moisture</li>
+            <li>Use correct USB power sources</li>
+            <li>Do not modify hardware</li>
+          </ul>
+        </div>
+
         <ul>
-          <li>Use indoors or in a protected environment only.</li>
-          <li>Do not expose to moisture or extremes of heat or cold.</li>
-          <li>Use suitable 5 V USB power supplies.</li>
+          <li>For licensed amateur radio operators only</li>
+          <li>No warranties implied</li>
+          <li>PI-Star is a trademark of MW0MWZ</li>
         </ul>
       </section>
 
       <!-- SUPPORT -->
       <section id="support" class="section">
-        <h2>12. Support</h2>
-        <p><strong>Developer:</strong> Robert Eddy (M3URE)</p>
+        <h2>12. Support & Contact</h2>
+
+        <h3>Developer</h3>
+        <p><strong>Created by:</strong> Robert Eddy (M3URE)</p>
         <p><strong>Email:</strong> roberteddy1234@gmail.com</p>
         <p><strong>Version:</strong> 2.0</p>
         <p><strong>Release Date:</strong> November 2025</p>
+
+        <h3>Need Help?</h3>
+        <ul>
+          <li>Check troubleshooting first</li>
+          <li>Ensure firmware is up to date</li>
+          <li>Document error messages</li>
+        </ul>
+
+        <div class="note">
+          This manual applies to Hotspot-Face firmware 2.0.
+        </div>
       </section>
 
     </main>
+
+    <!-- FOOTER -->
+    <footer style="padding:20px;text-align:center;color:var(--text-muted);font-size:12px;">
+      © 2025 Robert Eddy M3URE — Hotspot-Face Manual v2.0  
+      <br>Operate according to your regional amateur radio regulations.
+    </footer>
+
   </div>
 </div>
 
+<!-- THEME TOGGLE SCRIPT -->
 <script>
-  // Simple dark / light toggle with localStorage
-  const body = document.body;
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-  const themeLabel = document.getElementById('themeLabel');
+  const toggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeLabel = document.getElementById("themeLabel");
 
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      body.classList.add('dark');
-      themeIcon.textContent = '☀️';
-      themeLabel.textContent = 'Light';
-    } else {
-      body.classList.remove('dark');
-      themeIcon.textContent = '🌙';
-      themeLabel.textContent = 'Dark';
-    }
-  }
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 
-  const savedTheme = localStorage.getItem('hfTheme') || 'light';
-  applyTheme(savedTheme);
+    const dark = document.body.classList.contains("dark");
 
-  themeToggle.addEventListener('click', () => {
-    const newTheme = body.classList.contains('dark') ? 'light' : 'dark';
-    applyTheme(newTheme);
-    localStorage.setItem('hfTheme', newTheme);
+    themeIcon.textContent = dark ? "☀️" : "🌙";
+    themeLabel.textContent = dark ? "Light" : "Dark";
+
+    localStorage.setItem("hf-theme", dark ? "dark" : "light");
   });
+
+  const savedTheme = localStorage.getItem("hf-theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeIcon.textContent = "☀️";
+    themeLabel.textContent = "Light";
+  }
 </script>
+
 </body>
 </html>

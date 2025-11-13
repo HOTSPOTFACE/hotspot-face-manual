@@ -1,684 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hotspot-Face User Manual v2.0</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hotspot-Face Manual v2.0</title>
+
 <style>
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5ebe0;
-  color: #333;
-  line-height: 1.6;
-}
-
-.cover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 60px 40px;
-  text-align: center;
-  border-radius: 15px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.cover h1 {
-  font-size: 48px;
-  margin: 0;
-  font-weight: 700;
-}
-
-.cover h2 {
-  font-size: 24px;
-  margin: 10px 0;
-  font-weight: 300;
-}
-
-.cover .version {
-  margin-top: 30px;
-  font-size: 18px;
-}
-
-.section {
-  background: white;
-  padding: 30px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-h2 {
-  color: #4a3728;
-  font-size: 28px;
-  border-bottom: 3px solid #8b9e5f;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-
-h3 {
-  color: #6b5444;
-  font-size: 20px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f8f9fa;
-  font-weight: 600;
-}
-
-.note {
-  background: #fff3cd;
-  border-left: 4px solid #ffc107;
-  padding: 15px;
-  margin: 20px 0;
-  border-radius: 5px;
-}
-
-.warning {
-  background: #f8d7da;
-  border-left: 4px solid #dc3545;
-  padding: 15px;
-  margin: 20px 0;
-  border-radius: 5px;
-}
-
-.tip {
-  background: #d1ecf1;
-  border-left: 4px solid #0dcaf0;
-  padding: 15px;
-  margin: 20px 0;
-  border-radius: 5px;
-}
-
-.feature-new {
-  background: #d4edda;
-  border-left: 4px solid #28a745;
-  padding: 15px;
-  margin: 20px 0;
-  border-radius: 5px;
-}
-
-.code {
-  background: #f5f5f5;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-}
-
-.box-display {
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 2px;
-  border-radius: 3px;
-  color: white;
-  font-weight: bold;
-}
-
-.box-yellow { background-color: #ffc107; }
-.box-blue { background-color: #2196f3; color: white; }
-.box-darkblue { background-color: #1565c0; color: white; }
-.box-green { background-color: #4caf50; }
-.box-purple { background-color: #9c27b0; }
-.box-red { background-color: #f44336; }
-.box-grey { background-color: #9e9e9e; }
-
-.toc {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.toc ol {
-  margin: 10px 0;
-  padding-left: 30px;
-}
-
-.toc li {
-  margin: 8px 0;
-  line-height: 1.8;
-}
-
-.footer {
-  text-align: center;
-  padding: 30px;
-  color: #6b5444;
-  background: white;
-  border-radius: 10px;
-  margin-top: 40px;
-}
-
-@media print {
   body {
-    background: white;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5ebe0;
+    color: #333;
+    line-height: 1.6;
   }
+
+  /* Layout */
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background: #3d2f25;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+  }
+
+  .sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px 0;
+    font-size: 16px;
+  }
+
+  .sidebar a:hover {
+    color: #d6cbbf;
+  }
+
+  /* Content */
+  .content {
+    margin-left: 260px;
+    padding: 40px;
+    max-width: 900px;
+  }
+
+  h1, h2, h3 {
+    color: #4a3728;
+  }
+
   .section {
-    box-shadow: none;
-    border: 1px solid #ddd;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
-}
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+
+  table td, table th {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .box-display {
+    display: inline-block;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 4px;
+  }
+
+  .box-yellow { background: #ffc107; }
+  .box-blue { background: #2196f3; }
+  .box-darkblue { background: #1565c0; }
+  .box-green { background: #4caf50; }
+  .box-purple { background: #9c27b0; }
+  .box-red { background: #f44336; }
+  .box-grey { background: #757575; }
+
+  .warning {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .note {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .tip {
+    background: #d1ecf1;
+    border-left: 4px solid #0dcaf0;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 800px) {
+    .sidebar {
+      position: relative;
+      width: 100%;
+    }
+    .content {
+      margin-left: 0;
+      padding: 20px;
+    }
+  }
 </style>
 </head>
+
 <body>
 
-<div class="cover">
-  <h1>Hotspot-Face</h1>
-  <h2>Advanced MMDVM Monitor</h2>
-  <div class="version">
-    <p>User Manual Version 2.0</p>
-    <p>By Robert Eddy M3URE</p>
-    <p>November 2025</p>
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Hotspot-Face Manual</h2>
+
+    <a href="#intro">Introduction</a>
+    <a href="#features">Features</a>
+    <a href="#setup">Initial Setup</a>
+    <a href="#layout">Display Layout</a>
+    <a href="#operation">Normal Operation</a>
+    <a href="#settings">Settings Menu</a>
+    <a href="#advanced">Advanced Features</a>
+    <a href="#reset">Factory Reset</a>
+    <a href="#trouble">Troubleshooting</a>
+    <a href="#technical">Technical Info</a>
+    <a href="#safety">Safety</a>
+    <a href="#support">Support</a>
   </div>
-</div>
 
+  <!-- Content -->
+  <div class="content">
 
+    <!-- Title -->
+    <h1>Hotspot-Face</h1>
+    <h3>Advanced MMDVM Monitor</h3>
+    <p><strong>User Manual Version 2.0</strong><br>By Robert Eddy M3URE<br>November 2025</p>
 
-</head>
-<body>
-
-
-<div class="section">
-  <h2>Table of Contents</h2>
-  <div class="toc">
-    <ol>
-      <li>Introduction</li>
-      <li>Features</li>
-      <li>Initial Setup</li>
-      <li>Display Layout</li>
-      <li>Normal Operation</li>
-      <li>Settings Menu</li>
-      <li>Advanced Features</li>
-      <li>Factory Reset</li>
-      <li>Troubleshooting</li>
-      <li>Technical Information</li>
-      <li>Safety and Disclaimers</li>
-      <li>Support and Contact</li>
-    </ol>
-  </div>
-</div>
-
-<div class="section">
-  <h2>1. Introduction</h2>
-  <p>The Hotspot-Face is an advanced touchscreen monitor specifically designed for DMR hotspot systems operating PI-Star. It provides real-time visual feedback of radio transmissions, displaying callsigns, talk groups, and transmission durations in an intuitive, color-coded interface.</p>
-  
-  <p>This device eliminates the need to constantly check your computer or mobile device to monitor Pi-Star activity, providing an always-on, dedicated display that sits conveniently on your desk or in your radio shack.</p>
-  
-  <h3>Key Benefits:</h3>
-  <ul>
-    <li>Instant visual feedback of DMR activity</li>
-    <li>No computer required for monitoring</li>
-    <li>Touch-enabled interface for easy configuration</li>
-    <li>Automatic network detection and configuration</li>
-    <li>Dual-mode operation (WiFi and Hotspot)</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>2. Features</h2>
-  
-  <h3>Display Features</h3>
-  <ul>
-    <li>2.8" Color TFT touchscreen (320x240 resolution)</li>
-    <li>Real-time DMR transmission monitoring</li>
-    <li>Color-coded status boxes for easy identification</li>
-    <li>Auto-updating date display</li>
-    <li>Connection status indicator</li>
-  </ul>
-  
-  <h3>Network Features</h3>
-  <ul>
-    <li>Dual-band WiFi (2.4GHz 802.11 b/g/n)</li>
-    <li>Automatic network mode detection</li>
-    <li>Support for both WiFi and Pi-Star hotspot connections</li>
-    <li>Auto-discovery of Pi-Star devices</li>
-    <li>Web-based configuration portal</li>
-  </ul>
-  
-  <h3>Configuration Features</h3>
-  <ul>
-    <li>Touch-based settings menu</li>
-    <li>On-screen keyboard for easy text entry</li>
-    <li>Captive portal for initial setup</li>
-    <li>Factory reset capability</li>
-    <li>Customizable display name</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>3. Initial Setup</h2>
-  
-  <h3>First Time Setup</h3>
-  
-  <p>When you power on your Hotspot-Face for the first time, it will automatically enter Access Point mode for initial configuration.</p>
-  
-  <ol>
-    <li><strong>Power On:</strong> Connect the Hotspot-Face to a USB power source using the included USB-C cable</li>
-    <li><strong>Wait for AP Mode:</strong> The screen will display "Setup Mode" with connection instructions</li>
-    <li><strong>Connect to WiFi:</strong>
+    <!-- INTRO -->
+    <div id="intro" class="section">
+      <h2>1. Introduction</h2>
+      <p>The Hotspot-Face is an advanced touchscreen monitor specifically designed for <strong>DMR hotspot systems operating PI-Star</strong>.</p>
+      <p>It provides real-time visual feedback of radio transmissions including callsigns, talk groups, connection status, and transmission duration.</p>
+      <h3>Key Benefits</h3>
       <ul>
-        <li>On your phone or computer, connect to the WiFi network: <span class="code">Hotspot-FACE Setup</span></li>
-        <li>Enter the password: <span class="code">M3URE1512</span></li>
+        <li>Instant DMR activity display</li>
+        <li>No computer needed</li>
+        <li>Touch-based settings</li>
+        <li>Automatic network detection</li>
+        <li>Dual-mode WiFi/Hotspot operation</li>
       </ul>
-    </li>
-    <li><strong>Open Configuration Page:</strong>
+    </div>
+
+    <!-- FEATURES -->
+    <div id="features" class="section">
+      <h2>2. Features</h2>
+
+      <h3>Display</h3>
       <ul>
-        <li>Open a web browser</li>
-        <li>Navigate to: <span class="code">192.168.4.1</span></li>
-        <li>The configuration page will open automatically</li>
+        <li>2.8" TFT touchscreen (320×240)</li>
+        <li>Color-coded status boxes</li>
+        <li>Real-time DMR monitoring</li>
       </ul>
-    </li>
-    <li><strong>Configure Settings:</strong>
+
+      <h3>Network</h3>
       <ul>
-        <li><strong>Display Name:</strong> Enter a custom name for your device</li>
-        <li><strong>Connection Mode:</strong> Select your setup type:
-          <ul>
-            <li>"WiFi Only" - Pi-Star on your home network</li>
-            <li>"Hotspot Only" - Direct connection to Pi-Star hotspot</li>
-            <li>"Both" - Automatic switching between modes</li>
-          </ul>
-        </li>
-        <li><strong>WiFi Settings:</strong> Select or enter your WiFi network credentials</li>
-        <li><strong>Pi-Star IPs:</strong> Enter the IP addresses for your Pi-Star:
-          <ul>
-            <li>WiFi IP: Usually something like 192.168.1.100</li>
-            <li>Hotspot IP: Usually 192.168.50.1 or 10.0.0.1</li>
-          </ul>
-        </li>
-        <li><strong>Auto-Discovery:</strong> Enable to automatically find Pi-Star on your network</li>
+        <li>2.4GHz WiFi</li>
+        <li>Auto mode detection</li>
+        <li>Auto-discovery for Pi-Star</li>
       </ul>
-    </li>
-    <li><strong>Save Configuration:</strong> Click "Save & Connect"</li>
-    <li><strong>Restart:</strong> The device will restart and connect to your network</li>
-  </ol>
-  
-  <div class="tip">
-    <strong>ð¡ Tip:</strong> If you don't know your Pi-Star's IP address, enable Auto-Discovery and the Hotspot-Face will find it automatically!
+
+      <h3>Configuration</h3>
+      <ul>
+        <li>On-screen keyboard</li>
+        <li>Captive setup portal</li>
+        <li>Factory reset</li>
+      </ul>
+    </div>
+
+    <!-- SETUP -->
+    <div id="setup" class="section">
+      <h2>3. Initial Setup</h2>
+      <p>On first boot, the device enters AP (Setup) mode.</p>
+
+      <ol>
+        <li>Power on using USB-C</li>
+        <li>Connect to WiFi: <strong>Hotspot-FACE Setup</strong><br>Password: <code>M3URE1512</code></li>
+        <li>Open browser → <code>192.168.4.1</code></li>
+        <li>Enter WiFi SSID + password</li>
+        <li>Enter Pi-Star IPs</li>
+        <li>Save and reboot</li>
+      </ol>
+
+      <div class="tip"><strong>Tip:</strong> Enable Auto-Discovery if your Pi-Star IP is unknown.</div>
+    </div>
+
+    <!-- LAYOUT -->
+    <div id="layout" class="section">
+      <h2>4. Display Layout</h2>
+      <table>
+        <tr><td><span class="box-display box-darkblue">Header</span></td><td>Device name + settings access</td></tr>
+        <tr><td><span class="box-display box-yellow">Status</span></td><td>Idle / TX / Error</td></tr>
+        <tr><td><span class="box-display box-purple">Callsign</span></td><td>Active station callsign</td></tr>
+        <tr><td><span class="box-display box-green">Talk Group</span></td><td>Active TG/Reflector</td></tr>
+        <tr><td><span class="box-display box-blue">Duration</span></td><td>TX duration</td></tr>
+        <tr><td><span class="box-display box-grey">Date</span></td><td>Current date</td></tr>
+        <tr><td><span class="box-display box-grey">Connection</span></td><td>WiFi/Hotspot + IP</td></tr>
+      </table>
+    </div>
+
+    <!-- OPERATION -->
+    <div id="operation" class="section">
+      <h2>5. Normal Operation</h2>
+      <ul>
+        <li>Auto network detection</li>
+        <li>Automatic Pi-Star connection</li>
+        <li>Live display updates</li>
+      </ul>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settings" class="section">
+      <h2>6. Settings Menu</h2>
+      <p>Tap the header to access settings.</p>
+      <ul>
+        <li>Display Name</li>
+        <li>WiFi SSID + Password</li>
+        <li>Pi-Star WiFi & Hotspot IP</li>
+        <li>Auto-Discovery toggle</li>
+      </ul>
+    </div>
+
+    <!-- ADVANCED -->
+    <div id="advanced" class="section">
+      <h2>7. Advanced Features</h2>
+      <h3>Auto-Discovery</h3>
+      <p>Uses mDNS + ping scanning to detect Pi-Star on your LAN.</p>
+
+      <h3>Dual IP</h3>
+      <p>Stores both WiFi and Hotspot IPs for seamless switching.</p>
+    </div>
+
+    <!-- RESET -->
+    <div id="reset" class="section">
+      <h2>8. Factory Reset</h2>
+      <div class="warning">
+        Resets ALL stored settings.
+      </div>
+      <ol>
+        <li>Press & hold header 10 sec</li>
+        <li>Wait for countdown</li>
+        <li>Device reboots into Setup Mode</li>
+      </ol>
+    </div>
+
+    <!-- TROUBLESHOOT -->
+    <div id="trouble" class="section">
+      <h2>9. Troubleshooting</h2>
+
+      <h3>No Pi-Star</h3>
+      <ul><li>Check IP</li><li>Ensure Pi-Star is on</li></ul>
+
+      <h3>Auth Error</h3>
+      <ul><li>Default: pi-star / raspberry</li></ul>
+
+      <h3>No Web Portal</h3>
+      <ul><li>Go to 192.168.4.1 in AP mode</li></ul>
+    </div>
+
+    <!-- TECH INFO -->
+    <div id="technical" class="section">
+      <h2>10. Technical Information</h2>
+      <ul>
+        <li>WiFi: 2.4GHz only</li>
+        <li>Power: 5V USB-C</li>
+        <li>Temp: 0–70°C</li>
+      </ul>
+    </div>
+
+    <!-- SAFETY -->
+    <div id="safety" class="section">
+      <h2>11. Safety</h2>
+      <ul>
+        <li>Indoor use only</li>
+        <li>No moisture exposure</li>
+      </ul>
+    </div>
+
+    <!-- SUPPORT -->
+    <div id="support" class="section">
+      <h2>12. Support</h2>
+      <p>Developer: Robert Eddy (M3URE)</p>
+      <p>Email: roberteddy1234@gmail.com</p>
+    </div>
+
   </div>
-</div>
 
-<div class="section">
-  <h2>4. Display Layout</h2>
-  
-  <p>The Hotspot-Face display is organized into distinct color-coded sections for easy reading:</p>
-  
-  <h3>Screen Layout</h3>
-  
-  <table>
-    <tr>
-      <td><span class="box-display box-darkblue">Header Bar</span></td>
-      <td>Displays your custom device name. Touch to access settings.</td>
-    </tr>
-    <tr>
-      <td><span class="box-display box-yellow">Status Box</span></td>
-      <td>Shows current status (Idle/TX/Error)</td>
-    </tr>
-    <tr>
-      <td><span class="box-display box-purple">Callsign Box</span></td>
-      <td>Displays the transmitting station's callsign</td>
-    </tr>
-    <tr>
-      <td><span class="box-display box-green">Talk Group Box</span></td>
-      <td>Shows the active talk group or reflector</td>
-    </tr>
-    <tr>
-      <td><span class="box-display box-blue">Duration Box</span></td>
-      <td>Displays transmission duration in seconds</td>
-    </tr>
-    <tr>
-      <td><span class="box-display box-grey">Date Bar</span></td>
-      <td>Shows current date and day of week</td>
-    </tr>
-    <tr>
-      <td><span class="box-display box-grey">Connection Bar</span></td>
-      <td>Displays connection mode and Pi-Star IP with status indicator</td>
-    </tr>
-  </table>
-  
-  <h3>Status Indicators</h3>
-  <ul>
-    <li><strong>Idle:</strong> No active transmission</li>
-    <li><strong>TX:</strong> Active transmission (displayed in red)</li>
-    <li><strong>WiFi Off:</strong> No WiFi connection</li>
-    <li><strong>No Pi-Star:</strong> Cannot connect to Pi-Star</li>
-    <li><strong>Auth Error:</strong> Incorrect Pi-Star credentials</li>
-    <li><strong>â</strong> Connected successfully</li>
-    <li><strong>â</strong> Connection failed</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>5. Normal Operation</h2>
-  
-  <h3>Automatic Operation</h3>
-  <p>Once configured, the Hotspot-Face operates automatically:</p>
-  <ul>
-    <li>Connects to your network on power-up</li>
-    <li>Automatically detects network type (WiFi or Hotspot)</li>
-    <li>Finds and connects to Pi-Star</li>
-    <li>Updates display every second</li>
-    <li>Shows transmission activity in real-time</li>
-  </ul>
-  
-  <h3>Network Mode Switching</h3>
-  <p>The Hotspot-Face intelligently switches between network modes:</p>
-  <ul>
-    <li><strong>WiFi Mode:</strong> When connected to your home network</li>
-    <li><strong>Hotspot Mode:</strong> When connected directly to Pi-Star's hotspot</li>
-    <li>Automatically selects the appropriate Pi-Star IP address</li>
-    <li>Connection status shown in bottom bar</li>
-  </ul>
-  
-  <h3>Touch Interactions</h3>
-  <ul>
-    <li><strong>Header Bar (Quick Press):</strong> Opens settings menu</li>
-    <li><strong>Header Bar (10-second hold):</strong> Factory reset</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>6. Settings Menu</h2>
-  
-  <h3>Accessing Settings</h3>
-  <p>Touch and release the dark blue header bar to open the settings menu.</p>
-  
-  <h3>Settings Options</h3>
-  
-  <table>
-    <tr>
-      <th>Setting</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>Display Name</td>
-      <td>Change the text shown in the header bar</td>
-    </tr>
-    <tr>
-      <td>WiFi SSID</td>
-      <td>Change your WiFi network</td>
-    </tr>
-    <tr>
-      <td>WiFi Password</td>
-      <td>Update WiFi password</td>
-    </tr>
-    <tr>
-      <td>Pi-Star WiFi IP</td>
-      <td>IP address when on WiFi network</td>
-    </tr>
-    <tr>
-      <td>Pi-Star Hotspot IP</td>
-      <td>IP address when Pi-Star is hotspot</td>
-    </tr>
-    <tr>
-      <td>Auto-Discovery</td>
-      <td>Toggle automatic Pi-Star detection</td>
-    </tr>
-    <tr>
-      <td>EXIT</td>
-      <td>Return to main display</td>
-    </tr>
-  </table>
-  
-  <h3>On-Screen Keyboard</h3>
-  <p>When editing text fields, an on-screen keyboard appears with:</p>
-  <ul>
-    <li>Full QWERTY layout</li>
-    <li>Numbers and symbols (press "123" to switch)</li>
-    <li>Shift key for uppercase</li>
-    <li>Delete key for corrections</li>
-    <li>Space bar</li>
-    <li>OK button to save changes</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>7. Advanced Features</h2>
-  
-  <h3>Auto-Discovery (mDNS)</h3>
-  <p>When enabled, the Hotspot-Face automatically searches for Pi-Star on your network using:</p>
-  <ul>
-    <li>mDNS/Bonjour protocol</li>
-    <li>Common Pi-Star hostnames</li>
-    <li>Network scanning of likely IP addresses</li>
-    <li>Automatic validation of discovered devices</li>
-  </ul>
-  
-  <h3>Dual IP Management</h3>
-  <p>The Hotspot-Face stores separate IP addresses for different connection scenarios:</p>
-  <ul>
-    <li><strong>WiFi IP:</strong> Used when connected to your home network</li>
-    <li><strong>Hotspot IP:</strong> Used when connected to Pi-Star's hotspot</li>
-    <li>Automatic detection of network type</li>
-    <li>Seamless switching between modes</li>
-  </ul>
-  
-  <h3>Connection Recovery</h3>
-  <p>The device includes automatic recovery features:</p>
-  <ul>
-    <li>Automatic reconnection after network loss</li>
-    <li>Fallback to alternate IP if primary fails</li>
-    <li>Manual reconnection via status bar touch</li>
-    <li>Connection status indicators</li>
-  </ul>
-  
-  <h3>Data Persistence</h3>
-  <p>All data is preserved across power cycles:</p>
-  <ul>
-    <li>Network settings</li>
-    <li>Pi-Star IP addresses</li>
-    <li>Display preferences</li>
-    <li>Last known good configuration</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>8. Factory Reset</h2>
-  
-  <div class="warning">
-    <strong> Warning:</strong> Factory reset will erase all settings and return the device to its initial state!
-  </div>
-  
-  <h3>To Perform a Factory Reset:</h3>
-  <ol>
-    <li>Press and hold the dark blue header bar</li>
-    <li>Continue holding for 10 seconds</li>
-    <li>The display will show a countdown: "Reset in X seconds"</li>
-    <li>After 10 seconds, "RESETTING..." will appear</li>
-    <li>Release the header bar</li>
-    <li>The device will restart in setup mode</li>
-  </ol>
-  
-  <p>After a factory reset, you'll need to reconfigure all settings through the web portal.</p>
-</div>
-
-<div class="section">
-  <h2>9. Troubleshooting</h2>
-  
-  <h3>Common Issues and Solutions</h3>
-  
-  <table>
-    <tr>
-      <th>Problem</th>
-      <th>Solution</th>
-    </tr>
-    <tr>
-      <td>Display shows "WiFi Off"</td>
-      <td>
-        <ul>
-          <li>Check WiFi credentials in settings</li>
-          <li>Verify router is powered on</li>
-          <li>Move device closer to router</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Display shows "No Pi-Star"</td>
-      <td>
-        <ul>
-          <li>Verify Pi-Star IP address is correct</li>
-          <li>Ensure Pi-Star is powered on</li>
-          <li>Check network connectivity</li>
-          <li>Enable Auto-Discovery</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Display shows "Auth Error"</td>
-      <td>
-        <ul>
-          <li>Default credentials: pi-star / raspberry</li>
-          <li>Update credentials if changed</li>
-          <li>Check Pi-Star admin interface</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Touch screen not responding</td>
-      <td>
-        <ul>
-          <li>Clean screen with soft cloth</li>
-          <li>Perform factory reset</li>
-          <li>Check for firm touches</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Talk Group data disappears</td>
-      <td>
-        <ul>
-          <li>Normal when no active transmission</li>
-          <li>Data persists through menu navigation</li>
-          <li>Check Pi-Star dashboard for activity</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Cannot access web portal</td>
-      <td>
-        <ul>
-          <li>Ensure connected to "Hotspot-Face Setup" WiFi</li>
-          <li>Try 192.168.4.1 in browser</li>
-          <li>Disable mobile data on phone</li>
-        </ul>
-      </td>
-    </tr>
-  </table>
-  
-  <h3>LED Indicators</h3>
-  <ul>
-    <li><strong>Power LED (if present):</strong> Should be solid when powered</li>
-    <li><strong>Display Backlight:</strong> Should be on when active</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>10. Technical Information</h2>
-  
-  <h3>Network Requirements</h3>
-  <ul>
-    <li>2.4GHz WiFi network (5GHz not supported)</li>
-    <li>WPA/WPA2 security (WEP not recommended)</li>
-    <li>DHCP enabled on router</li>
-    <li>Access to Pi-Star on same network</li>
-  </ul>
-  
-  <h3>Pi-Star Requirements</h3>
-  <ul>
-    <li>Pi-Star version 3.4 or later</li>
-    <li>Admin interface enabled</li>
-    <li>Network access enabled</li>
-    <li>Valid amateur radio callsign configured</li>
-  </ul>
-  
-  <h3>Power Requirements</h3>
-  <ul>
-    <li>5V DC via USB-C</li>
-    <li>Minimum 500mA current capacity</li>
-    <li>Typical consumption: 200mA</li>
-    <li>Peak consumption: 350mA</li>
-  </ul>
-  
-  <h3>Environmental Specifications</h3>
-  <ul>
-    <li>Operating Temperature: 0°C to 70°C</li>
-    <li>Storage Temperature: -20°C to 80°C</li>
-    <li>Humidity: 10% to 90% non-condensing</li>
-    <li>Altitude: Up to 3000m</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>11. Safety and Disclaimers</h2>
-  
-  <div class="warning">
-    <h3>Important Safety Information</h3>
-    <ul>
-      <li>This device is for indoor and weather protected use only</li>
-      <li>Do not expose to moisture or extreme temperatures</li>
-      <li>Use only appropriate USB power sources</li>
-      <li>Do not attempt to modify the hardware</li>
-      <li>Keep away from strong magnetic fields</li>
-    </ul>
-  </div>
-  
-  <h3>Disclaimers</h3>
-  <ul>
-    <li>This device is provided "as is" without warranty</li>
-    <li>Not responsible for data loss or equipment damage</li>
-    <li>Requires valid amateur radio license for DMR operation</li>
-    <li>Pi-Star is a trademark of MW0MWZ</li>
-  </ul>
-  
-  <h3>Amateur Radio Compliance</h3>
-  <p>Users must hold a valid amateur radio license to transmit on DMR networks. This device is for receiving and monitoring only and does not transmit radio signals.</p>
-</div>
-
-<div class="section">
-  <h2>12. Support and Contact</h2>
-  
-  <h3>Developer Information</h3>
-  <p><strong>Created by:</strong> Robert Eddy (M3URE)</p>
-  <p><strong>Email:</strong> roberteddy1234@gmail.com</p>
-  <p><strong>Version:</strong> 2.0</p>
-  <p><strong>Release Date:</strong> November 2025</p>
-  
-  <h3>Getting Help</h3>
-  <ul>
-    <li>Check the troubleshooting section first</li>
-    <li>Ensure you have the latest firmware version</li>
-    <li>Document any error messages or unusual behavior</li>
-  </ul>
-  
-  <div class="note">
-    <strong>Note:</strong> This manual is for Hotspot-Face firmware version 2.0. Features may vary in other versions.
-  </div>
-</div>
-
-<div class="footer">
-  <p>© 2025 Robert Eddy M3URE - All Rights Reserved</p>
-  <p>Hotspot-Face User Manual v2.0</p>
-  <p style="font-size: 12px; margin-top: 20px;">
-    This device is designed for amateur radio operators.<br>
-    Please operate in accordance with your local regulations and amateur radio best practices.
-  </p>
 </div>
 
 </body>
 </html>
-

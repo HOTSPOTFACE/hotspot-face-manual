@@ -20,9 +20,6 @@
       --sidebar-bg: #0b1220;
       --sidebar-border: #111827;
       --card-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
-     
-}
-
     }
 
     body.dark {
@@ -48,6 +45,9 @@
       line-height: 1.6;
       scroll-behavior: smooth;
     }
+
+    /* Stop header from covering section titles */
+    section { scroll-margin-top: 120px; }
 
     .container {
       display: flex;
@@ -135,7 +135,7 @@
       text-decoration: none;
     }
 
-    /* Content wrapper */
+    /* CONTENT WRAPPER */
     .content-wrapper {
       margin-left: 260px;
       width: calc(100% - 260px);
@@ -202,6 +202,43 @@
       border-bottom: 2px solid rgba(148,163,184,0.3);
       padding-bottom: 6px;
       margin-bottom: 14px;
+    }
+
+    /* TABLE MOBILE FIX */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-x: auto;
+      display: block;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none;
+      }
+      .content-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero img {
+        width: 120px !important;
+      }
+      .hero-title {
+        font-size: 22px !important;
+      }
+      .hero-sub {
+        font-size: 13px !important;
+      }
+      .hero-meta {
+        font-size: 11px !important;
+      }
+      .section {
+        padding: 18px !important;
+      }
     }
   </style>
 </head>
@@ -271,7 +308,7 @@
         </div>
 
         <div class="hero-meta">
-          <strong>Created by:</strong> Robert Eddy (M3URE) · 
+          <strong>Created by:</strong> Robert Eddy (M3URE) ·
           <strong>Use case:</strong> Always-on visual monitor for PI-Star activity.
         </div>
       </section>
@@ -411,8 +448,8 @@
         <table>
           <tr><th>Issue</th><th>Solution</th></tr>
           <tr><td>WiFi Off</td><td>Check router, password, distance</td></tr>
-          <tr><td>No PI-Star</td><td>Check IP address; enable auto-discovery</td></tr>
-          <tr><td>Auth Error</td><td>Default: pi-star / raspberry</td></tr>
+          <tr><td>No PI-Star</td><td>Check IP; enable auto-discovery</td></tr>
+          <tr><td>Auth Error</td><td>Default credentials: pi-star / raspberry</td></tr>
         </table>
       </section>
 

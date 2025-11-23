@@ -159,6 +159,29 @@
       border-bottom-color: #1f2937;
     }
 
+    .topbar-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .topbar-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .btn-toggle {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .content {
       padding: 26px 40px 40px;
       max-width: 980px;
@@ -204,12 +227,59 @@
       margin-bottom: 14px;
     }
 
+    .section h3 {
+      font-size: 16px;
+      margin-top: 18px;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .info-box {
+      background: var(--primary-soft);
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+
+    .warning {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 12px 0;
+      color: #78350f;
+    }
+
+    body.dark .warning {
+      background: #422006;
+      color: #fde68a;
+    }
+
+    code {
+      background: rgba(148,163,184,0.15);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+
     /* TABLE MOBILE FIX */
     table {
       width: 100%;
       border-collapse: collapse;
-      overflow-x: auto;
-      display: block;
+      margin: 12px 0;
+    }
+
+    table th, table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(148,163,184,0.2);
+    }
+
+    table th {
+      background: var(--primary-soft);
+      font-weight: 600;
     }
 
     /* MOBILE RESPONSIVE */
@@ -224,6 +294,9 @@
     }
 
     @media (max-width: 600px) {
+      .content {
+        padding: 20px 16px !important;
+      }
       .hero img {
         width: 120px !important;
       }
@@ -326,6 +399,7 @@
           dedicated display for your shack.
         </p>
       </section>
+
       <!-- FEATURES -->
       <section id="features" class="section">
         <h2>2. Features</h2>
@@ -341,16 +415,16 @@
         <h3>Network</h3>
         <ul>
           <li>2.4GHz WiFi support</li>
-          <li>Automatic WiFi vs Hotspot mode detection</li>
-          <li>Auto-discovery of PI-Star devices</li>
-          <li>Web configuration interface</li>
+          <li>Multiple WiFi network profiles</li>
+          <li>Auto-discovery of PI-Star devices via mDNS</li>
+          <li>Mobile-optimized web configuration interface</li>
         </ul>
 
         <h3>Configuration</h3>
         <ul>
-          <li>Touchscreen menu system</li>
-          <li>On-screen keyboard</li>
-          <li>Captive setup portal</li>
+          <li>Long-press header for options menu</li>
+          <li>Captive setup portal (mobile/tablet)</li>
+          <li>Network scanning and selection</li>
           <li>Factory reset functionality</li>
         </ul>
       </section>
@@ -358,21 +432,45 @@
       <!-- SETUP -->
       <section id="setup" class="section">
         <h2>3. Initial Setup</h2>
+        
+        <div class="info-box">
+          <strong>📱 Mobile/Tablet Required:</strong> Setup is optimized for mobile devices and tablets. 
+          The captive portal automatically opens when you connect to the setup WiFi network.
+        </div>
+
         <p>When powered on for the first time, the device enters WiFi Setup Mode.</p>
 
+        <h3>Step-by-Step Instructions:</h3>
         <ol>
-          <li>Power the device via USB-C.</li>
+          <li><strong>Power the device</strong> via USB-C (5V).</li>
           <li>
-            Connect to WiFi:
-            <strong>Hotspot-FACE Setup</strong><br>
+            <strong>Connect to WiFi network:</strong><br>
+            Network: <code>Hotspot-Face Setup</code><br>
             Password: <code>M3URE1512</code>
           </li>
-          <li>Open a browser and go to <code>192.168.4.1</code>.</li>
-          <li>Enter WiFi SSID + Password.</li>
-          <li>Enter PI-Star WiFi IP and PI-Star Hotspot IP.</li>
-          <li>Enable Auto-Discovery if unsure of IPs.</li>
-          <li>Save & reboot.</li>
+          <li>
+            <strong>Press "Sign in" if prompted</strong><br>
+            Most mobile devices will show a notification to sign in to the WiFi network. 
+            Tap this notification to open the configuration page automatically.
+          </li>
+          <li>
+            <strong>Configure your settings:</strong>
+            <ul>
+              <li>Enter your home WiFi SSID and password (or scan for networks)</li>
+              <li>Optionally enter PI-Star IP address</li>
+              <li>Leave PI-Star IP blank to enable automatic discovery</li>
+              <li>Default PI-Star credentials: <code>pi-star</code> / <code>raspberry</code></li>
+            </ul>
+          </li>
+          <li><strong>Click "Save & Connect"</strong> to save and reboot.</li>
+          <li>The device will connect to your WiFi and find your PI-Star automatically.</li>
         </ol>
+
+        <div class="info-box">
+          <strong>💡 Tip:</strong> Enable "Auto-Discovery" to let the device find your PI-Star 
+          automatically using mDNS. This works if your PI-Star is named "pi-star" or "pistar" on 
+          your network.
+        </div>
       </section>
 
       <!-- DISPLAY LAYOUT -->
@@ -380,64 +478,184 @@
         <h2>4. Display Layout</h2>
 
         <table>
-          <tr><td><span class="box-display box-darkblue">Header</span></td><td>Shows device name, tap for settings</td></tr>
-          <tr><td><span class="box-display box-yellow">Status</span></td><td>Idle, TX, or error</td></tr>
-          <tr><td><span class="box-display box-purple">Callsign</span></td><td>Transmitting station</td></tr>
-          <tr><td><span class="box-display box-green">Talk Group</span></td><td>Active TG or reflector</td></tr>
-          <tr><td><span class="box-display box-blue">Duration</span></td><td>TX length</td></tr>
-          <tr><td><span class="box-display box-grey">Date</span></td><td>Today's date</td></tr>
-          <tr><td><span class="box-display box-grey">Connection</span></td><td>Mode + IP address</td></tr>
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Header (Blue)</strong></td>
+              <td>Shows device name. Long-press (3 seconds) to access options menu.</td>
+            </tr>
+            <tr>
+              <td><strong>Status (Yellow)</strong></td>
+              <td>Shows current status: Idle, TX (transmitting), WiFi Off, Error, etc.</td>
+            </tr>
+            <tr>
+              <td><strong>Callsign (Purple)</strong></td>
+              <td>Displays the callsign of the transmitting station.</td>
+            </tr>
+            <tr>
+              <td><strong>Talk Group (Green)</strong></td>
+              <td>Shows the active talk group or reflector.</td>
+            </tr>
+            <tr>
+              <td><strong>Duration (Blue)</strong></td>
+              <td>Shows the transmission duration in seconds.</td>
+            </tr>
+            <tr>
+              <td><strong>Date (Grey)</strong></td>
+              <td>Displays today's date (updates from NTP server).</td>
+            </tr>
+            <tr>
+              <td><strong>Bottom Bar (Grey)</strong></td>
+              <td>Reserved for future features. Tap to reconnect WiFi.</td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <!-- NORMAL OPERATION -->
       <section id="operation" class="section">
         <h2>5. Normal Operation</h2>
+        <p>Once configured, the Hotspot-Face operates automatically:</p>
         <ul>
-          <li>Automatically connects to WiFi</li>
-          <li>Detects WiFi or Hotspot mode</li>
-          <li>Fetches PI-Star data every second</li>
-          <li>Displays callsign, TG, TX duration</li>
+          <li>Automatically connects to your saved WiFi network on boot</li>
+          <li>Uses mDNS to discover PI-Star if auto-discovery is enabled</li>
+          <li>Fetches PI-Star activity data every 500ms for real-time updates</li>
+          <li>Displays callsign, talk group, and TX duration when activity is detected</li>
+          <li>Shows "TX" status in red when transmission is active</li>
+          <li>Returns to "Idle" when no activity is present</li>
         </ul>
+
+        <div class="info-box">
+          <strong>Real-time Updates:</strong> The display refreshes twice per second, 
+          ensuring you see DMR activity as it happens.
+        </div>
       </section>
 
       <!-- SETTINGS MENU -->
       <section id="settings" class="section">
-        <h2>6. Settings Menu</h2>
-        <p>Tap the top header bar to open settings.</p>
+        <h2>6. Settings & Options Menu</h2>
+        
+        <h3>Accessing Options Menu</h3>
+        <p>
+          <strong>Long-press the blue header bar</strong> for 3 seconds. The header will flash 
+          with a countdown, then turn green. Release to open the options menu.
+        </p>
 
+        <h3>Options Available:</h3>
         <table>
-          <tr><th>Setting</th><th>Description</th></tr>
-          <tr><td>Display Name</td><td>Text shown in header</td></tr>
-          <tr><td>WiFi SSID</td><td>Select your WiFi</td></tr>
-          <tr><td>WiFi Password</td><td>Enter password</td></tr>
-          <tr><td>PI-Star WiFi IP</td><td>IP when using home network</td></tr>
-          <tr><td>PI-Star Hotspot IP</td><td>IP when connected directly</td></tr>
-          <tr><td>Auto-Discovery</td><td>Automatically find PI-Star</td></tr>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AP Setup Mode</strong></td>
+              <td>Opens the WiFi setup portal to add more networks or change settings.</td>
+            </tr>
+            <tr>
+              <td><strong>Factory Reset</strong></td>
+              <td>Erases all settings and returns device to first-boot state.</td>
+            </tr>
+            <tr>
+              <td><strong>Cancel</strong></td>
+              <td>Returns to normal operation without changes.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Web Configuration Settings:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Display Name</strong></td>
+              <td>Custom text shown in the header bar (e.g., "M3URE Monitor")</td>
+            </tr>
+            <tr>
+              <td><strong>WiFi SSID</strong></td>
+              <td>Your home WiFi network name (supports network scanning)</td>
+            </tr>
+            <tr>
+              <td><strong>WiFi Password</strong></td>
+              <td>Password for your WiFi network</td>
+            </tr>
+            <tr>
+              <td><strong>PI-Star IP</strong></td>
+              <td>IP address of your PI-Star (optional if auto-discovery enabled)</td>
+            </tr>
+            <tr>
+              <td><strong>PI-Star Username</strong></td>
+              <td>Default: <code>pi-star</code></td>
+            </tr>
+            <tr>
+              <td><strong>PI-Star Password</strong></td>
+              <td>Default: <code>raspberry</code></td>
+            </tr>
+            <tr>
+              <td><strong>Auto-Discovery</strong></td>
+              <td>Enable mDNS automatic PI-Star detection</td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <!-- ADVANCED FEATURES -->
       <section id="advanced" class="section">
         <h2>7. Advanced Features</h2>
-        <ul>
-          <li>mDNS discovery</li>
-          <li>Dual-IP memory</li>
-          <li>Automatic reconnection</li>
-          <li>Persisted settings</li>
-        </ul>
+
+        <h3>mDNS Auto-Discovery</h3>
+        <p>
+          The device can automatically find your PI-Star on the network using mDNS (Multicast DNS). 
+          It searches for hostnames: <code>pi-star</code>, <code>pistar</code>, 
+          <code>pi-star.local</code>, <code>pistar.local</code>
+        </p>
+
+        <h3>Multiple WiFi Profiles</h3>
+        <p>
+          The device stores multiple WiFi networks. You can add networks by entering AP Setup Mode 
+          and saving additional WiFi credentials without losing existing ones.
+        </p>
+
+        <h3>Priority Connection</h3>
+        <p>
+          The device remembers the last successfully connected network and tries that first on boot, 
+          falling back to other saved networks if connection fails.
+        </p>
+
+        <h3>Automatic Reconnection</h3>
+        <p>
+          If WiFi connection is lost, tap the bottom grey bar to trigger a manual reconnection attempt.
+        </p>
       </section>
 
       <!-- FACTORY RESET -->
       <section id="reset" class="section">
         <h2>8. Factory Reset</h2>
+        
         <div class="warning">
-          <strong>Warning:</strong> Factory reset will erase all settings.
+          <strong>⚠️ Warning:</strong> Factory reset will permanently erase all saved WiFi networks, 
+          PI-Star settings, and custom configuration. This action cannot be undone.
         </div>
+
+        <h3>How to Perform Factory Reset:</h3>
         <ol>
-          <li>Hold the header bar</li>
-          <li>Wait for countdown</li>
-          <li>Release to reset</li>
+          <li>Long-press the blue header bar for 3 seconds to open the options menu</li>
+          <li>Tap the red "Factory Reset" button</li>
+          <li>The screen will turn red and display "RESETTING"</li>
+          <li>Device will reboot into initial setup mode</li>
+          <li>Reconnect using the setup instructions in Section 3</li>
         </ol>
       </section>
 
@@ -446,45 +664,176 @@
         <h2>9. Troubleshooting</h2>
 
         <table>
-          <tr><th>Issue</th><th>Solution</th></tr>
-          <tr><td>WiFi Off</td><td>Check router, password, distance</td></tr>
-          <tr><td>No PI-Star</td><td>Check IP; enable auto-discovery</td></tr>
-          <tr><td>Auth Error</td><td>Default credentials: pi-star / raspberry</td></tr>
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Possible Cause</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>WiFi Off</strong></td>
+              <td>Cannot connect to WiFi</td>
+              <td>
+                • Check WiFi password is correct<br>
+                • Ensure router is powered on<br>
+                • Move device closer to router<br>
+                • Check 2.4GHz WiFi is enabled (5GHz not supported)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>No Pi-Star</strong></td>
+              <td>Cannot find PI-Star</td>
+              <td>
+                • Enable auto-discovery in settings<br>
+                • Manually enter PI-Star IP address<br>
+                • Verify PI-Star is powered on and connected<br>
+                • Check both devices are on same network
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Auth Error</strong></td>
+              <td>Wrong PI-Star credentials</td>
+              <td>
+                • Default username: <code>pi-star</code><br>
+                • Default password: <code>raspberry</code><br>
+                • If changed, enter correct credentials in setup
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Error</strong></td>
+              <td>HTTP connection failed</td>
+              <td>
+                • Check PI-Star is running<br>
+                • Verify IP address is correct<br>
+                • Ensure PI-Star web interface is accessible
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Syncing...</strong></td>
+              <td>Time not yet synchronized</td>
+              <td>
+                • Wait 10-30 seconds for NTP sync<br>
+                • Check internet connection is active<br>
+                • Date will appear once NTP sync completes
+              </td>
+            </tr>
+          </tbody>
         </table>
+
+        <h3>Additional Tips:</h3>
+        <ul>
+          <li>Perform a factory reset if settings become corrupted</li>
+          <li>Ensure USB-C power supply provides stable 5V</li>
+          <li>Check Serial Monitor output for detailed debug information</li>
+          <li>Tap bottom bar to force WiFi reconnection</li>
+        </ul>
       </section>
 
       <!-- TECH INFO -->
       <section id="technical" class="section">
         <h2>10. Technical Information</h2>
+
+        <h3>Hardware Requirements</h3>
         <ul>
-          <li>Requires PI-Star v3.4 or newer</li>
-          <li>5V USB-C power</li>
-          <li>2.4GHz WiFi</li>
+          <li><strong>Display:</strong> 2.8" ILI9341 TFT touchscreen (320×240 resolution)</li>
+          <li><strong>Controller:</strong> ESP32 microcontroller</li>
+          <li><strong>Power:</strong> 5V USB-C (minimum 500mA recommended)</li>
+          <li><strong>WiFi:</strong> 2.4GHz 802.11 b/g/n (5GHz not supported)</li>
+        </ul>
+
+        <h3>Software Requirements</h3>
+        <ul>
+          <li><strong>PI-Star:</strong> Version 3.4 or newer</li>
+          <li><strong>Firmware:</strong> v41 (mobile-optimized)</li>
+        </ul>
+
+        <h3>Network Specifications</h3>
+        <ul>
+          <li><strong>Protocols:</strong> HTTP, mDNS, DNS</li>
+          <li><strong>AP Mode:</strong> 192.168.4.1 (captive portal)</li>
+          <li><strong>Update Rate:</strong> 500ms (2 updates per second)</li>
+          <li><strong>Discovery:</strong> mDNS hostnames (pi-star.local)</li>
+        </ul>
+
+        <h3>Memory & Storage</h3>
+        <ul>
+          <li><strong>WiFi Profiles:</strong> Stores up to 30 networks</li>
+          <li><strong>Retention:</strong> Settings persist across power cycles</li>
         </ul>
       </section>
 
       <!-- SAFETY -->
       <section id="safety" class="section">
         <h2>11. Safety & Disclaimers</h2>
+
+        <div class="warning">
+          <strong>⚠️ Important Safety Information</strong>
+        </div>
+
+        <h3>Operating Environment</h3>
         <ul>
-          <li>Indoor use only</li>
-          <li>Do not expose to moisture</li>
-          <li>Do not modify hardware</li>
+          <li><strong>Indoor use only</strong> – Not weatherproof</li>
+          <li><strong>Dry locations only</strong> – Do not expose to moisture or liquids</li>
+          <li><strong>Temperature range:</strong> 0°C to 40°C operating temperature</li>
+          <li><strong>Ventilation:</strong> Ensure adequate airflow around device</li>
+        </ul>
+
+        <h3>Electrical Safety</h3>
+        <ul>
+          <li>Use only 5V USB-C power supplies</li>
+          <li>Do not modify internal circuitry</li>
+          <li>Disconnect power before cleaning</li>
+          <li>Use appropriate fusing on power supply</li>
+        </ul>
+
+        <h3>Disclaimers</h3>
+        <ul>
+          <li>Device is provided "as-is" without warranty</li>
+          <li>User assumes all risk of operation</li>
+          <li>Not responsible for damage to PI-Star or connected equipment</li>
+          <li>Follow your local amateur radio regulations</li>
+        </ul>
+
+        <h3>Responsible Use</h3>
+        <ul>
+          <li>Comply with all amateur radio licensing requirements</li>
+          <li>Do not use for commercial purposes without proper authorization</li>
+          <li>Respect other users on shared talk groups</li>
         </ul>
       </section>
 
       <!-- SUPPORT -->
       <section id="support" class="section">
         <h2>12. Support & Contact</h2>
+
         <p><strong>Developer:</strong> Robert Eddy (M3URE)</p>
-        <p><strong>Email:</strong> roberteddy1234@gmail.com</p>
-        <p><strong>Version:</strong> Firmware 2.0 — November 2025</p>
+        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#cbb9a4a9aeb9bfaeafafb2faf9f8ff8baca6aaa2a7e5a8a4a6"><span class="__cf_email__" data-cfemail="295b464b4c5b5d4c4d4d50181b1a1d694e44484045074a4644">[email&#160;protected]</span></a></p>
+        <p><strong>Callsign:</strong> M3URE</p>
+        
+        <div class="info-box">
+          <strong>Current Version:</strong> Firmware v41 (Mobile-Optimized) — November 2025<br>
+          <strong>Manual Version:</strong> 2.1 — Updated November 2025
+        </div>
+
+        <h3>Getting Help</h3>
+        <p>
+          When contacting for support, please provide:
+        </p>
+        <ul>
+          <li>Description of the issue</li>
+          <li>PI-Star version</li>
+          <li>Network configuration (WiFi vs Hotspot mode)</li>
+          <li>Any error messages displayed</li>
+        </ul>
       </section>
 
     </main>
 
-    <footer style="padding:20px;text-align:center;color:var(--text-muted);font-size:12px;">
-      © 2025 Robert Eddy M3URE — Hotspot-Face Manual v2.0
+    <footer style="padding:20px;text-align:center;color:var(--text-muted);font-size:12px;border-top:1px solid rgba(148,163,184,0.2);margin-top:40px;">
+      © 2025 Robert Eddy M3URE — Hotspot-Face Manual v2.1<br>
+      <span style="font-size:11px;">Last Updated: November 2025</span>
     </footer>
 
   </div>

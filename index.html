@@ -338,6 +338,7 @@
       <a href="#intro">🏁 Introduction</a>
       <a href="#features">✨ Features</a>
       <a href="#setup">⚙️ Initial Setup</a>
+      <a href="#database">💾 SD Card Database</a>
       <a href="#layout">🖥️ Display Layout</a>
       <a href="#operation">📡 Normal Operation</a>
       <a href="#settings">🛠️ Settings Menu</a>
@@ -408,8 +409,18 @@
         <ul>
           <li>2.8" TFT touchscreen (320×240 resolution)</li>
           <li>Colour-coded status indicators</li>
-          <li>Real-time DMR activity display</li>
+          <li>Real-time DMR activity display with operator names and locations</li>
+          <li>Scrolling text for long location names</li>
+          <li>Clean display format (numeric talk groups, simplified status)</li>
           <li>Date and connection mode indicator</li>
+        </ul>
+
+        <h3>Database</h3>
+        <ul>
+          <li>SD card-based DMR database with 450,000+ callsigns</li>
+          <li>Millisecond callsign lookups</li>
+          <li>Operator names and locations from RadioID.net</li>
+          <li>Country abbreviations for compact display</li>
         </ul>
 
         <h3>Network</h3>
@@ -473,9 +484,140 @@
         </div>
       </section>
 
+      <!-- SD CARD DATABASE SETUP -->
+      <section id="database" class="section">
+        <h2>4. SD Card Database</h2>
+
+        <div class="info-box">
+          <strong>💾 Included:</strong> Your Hotspot-Face comes with an SD card pre-loaded with a 
+          recent DMR database from RadioID.net. The device is ready to display operator names and 
+          locations out of the box.
+        </div>
+
+        <h3>What's on the SD Card</h3>
+        <p>
+          The included SD card contains a DMR ID database file named <code>dmrids.csv</code> with 450,000+ 
+          callsigns, names, and locations. This database is sourced from RadioID.net and is current as of 
+          the device manufacture date. The device uses this database to instantly display operator 
+          information during DMR transmissions.
+        </p>
+
+        <h3>When to Update the Database</h3>
+        <p>
+          New amateur radio operators register DMR IDs regularly, and existing operators may update 
+          their information. You should update your database when:
+        </p>
+        <ul>
+          <li>You notice callsigns without names or locations</li>
+          <li>You want the latest operator information</li>
+          <li>New users in your area have joined DMR networks</li>
+          <li>Every 3-6 months to keep information current</li>
+        </ul>
+
+        <h3>How to Update the Database</h3>
+        <p>Follow these steps to update your DMR database using a PC:</p>
+
+        <ol>
+          <li>
+            <strong>Download the Latest Database</strong><br>
+            Click this link to download the latest DMR ID database in CSV format:<br>
+            <a href="https://radioid.net/static/user.csv" target="_blank"><strong>https://radioid.net/static/user.csv</strong></a><br>
+            This file is updated daily and contains all registered DMR IDs worldwide (approximately 15 MB). 
+            The download will start automatically when you click the link.<br>
+            <em>Alternative:</em> Visit <a href="https://radioid.net/database/dumps" target="_blank">https://radioid.net/database/dumps</a> 
+            and download "user.csv" from the file list.
+          </li>
+          <li>
+            <strong>Download the Latest Database</strong><br>
+            Click this link to download the latest DMR ID database in CSV format:<br>
+            <a href="https://radioid.net/static/user.csv" target="_blank"><strong>https://radioid.net/static/user.csv</strong></a><br>
+            This file is updated daily and contains all registered DMR IDs worldwide (approximately 15 MB). 
+            The download will start automatically when you click the link.<br>
+            <em>Alternative:</em> Visit <a href="https://radioid.net/database/dumps" target="_blank">https://radioid.net/database/dumps</a> 
+            and download "user.csv" from the file list.
+          </li>
+          <li>
+            <strong>Remove SD Card</strong><br>
+            Power off the Hotspot-Face device and carefully remove the SD card.
+          </li>
+          <li>
+            <strong>Insert SD Card into PC</strong><br>
+            Use an SD card reader to connect the card to your computer.
+          </li>
+          <li>
+            <strong>Open and Organize the Downloaded Database</strong><br>
+            Open the downloaded CSV file in Excel, LibreOffice Calc, or Google Sheets and organize the data:
+            <ul>
+              <li><strong>Step 1 - Arrange columns in alphabetical order:</strong>
+                <ul>
+                  <li><strong>CALLSIGN</strong> - DMR callsign (e.g., M3URE)</li>
+                  <li><strong>CITY</strong> - Operator's city</li>
+                  <li><strong>COUNTRY</strong> - Country name or abbreviation</li>
+                  <li><strong>FIRST_NAME</strong> - Operator's first name</li>
+                  <li><strong>SURNAME</strong> - Operator's last name</li>
+                </ul>
+              </li>
+              <li>Delete any extra columns not listed above</li>
+              <li>Ensure the first row contains the column headers exactly as shown</li>
+              <li><strong>Step 2 - Sort all rows by CALLSIGN column alphabetically (A-Z)</strong>
+                <ul>
+                  <li><strong>Excel:</strong> Select all data → Data tab → Sort → Sort by CALLSIGN (A to Z)</li>
+                  <li><strong>Google Sheets:</strong> Select all data → Data menu → Sort range → Sort by CALLSIGN (A→Z)</li>
+                  <li><strong>LibreOffice:</strong> Select all data → Data menu → Sort → Sort by CALLSIGN (Ascending)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Rename and Save to SD Card</strong><br>
+            <ol style="margin: 8px 0 0 0; padding-left: 20px;">
+              <li>Save the organized file as a CSV file to your computer</li>
+              <li><strong>Rename the file to <code>dmrids.csv</code></strong> (the downloaded file will be named "user.csv" 
+              but must be renamed to exactly <code>dmrids.csv</code> - lowercase, no spaces)</li>
+              <li>Copy <code>dmrids.csv</code> to the SD card, replacing the old database file</li>
+            </ol>
+          </li>
+          <li>
+            <strong>Reinsert SD Card</strong><br>
+            Safely eject the SD card from your PC, insert it back into the Hotspot-Face, and power 
+            on the device. The new database will load automatically.
+          </li>
+        </ol>
+
+        <div class="warning">
+          <strong>⚠️ Critical Requirements:</strong> 
+          <ol style="margin: 8px 0 0 0; padding-left: 20px;">
+            <li>File must be named exactly <code>dmrids.csv</code> (lowercase, no spaces)</li>
+            <li>Columns must be in alphabetical order: CALLSIGN, CITY, COUNTRY, FIRST_NAME, SURNAME</li>
+            <li>All rows must be sorted alphabetically by CALLSIGN (A-Z)</li>
+          </ol>
+          Incorrect filename, column order, or row sorting will result in no names or locations being displayed, 
+          or incorrect data lookups.
+        </div>
+
+        <h3>Verifying the Update</h3>
+        <p>
+          After updating and reinserting the SD card, power on the device. You should see operator 
+          names and locations displayed during DMR transmissions. If you only see callsigns:
+        </p>
+        <ul>
+          <li>Check that the SD card is properly inserted</li>
+          <li>Verify the database file is named exactly <code>dmrids.csv</code> (lowercase)</li>
+          <li>Confirm columns are in alphabetical order (CALLSIGN, CITY, COUNTRY, FIRST_NAME, SURNAME)</li>
+          <li>Confirm all rows are sorted alphabetically by CALLSIGN column</li>
+          <li>Ensure the file is saved in CSV format (not XLSX or other formats)</li>
+        </ul>
+
+        <div class="info-box">
+          <strong>💡 Performance:</strong> The device uses an optimized indexing system that 
+          provides millisecond lookup times. A database with 450,000+ entries typically 
+          loads in under 10 seconds on startup.
+        </div>
+      </section>
+
       <!-- DISPLAY LAYOUT -->
       <section id="layout" class="section">
-        <h2>4. Display Layout</h2>
+        <h2>5. Display Layout</h2>
 
         <table>
           <thead>
@@ -491,7 +633,7 @@
             </tr>
             <tr>
               <td><strong>Status (Yellow)</strong></td>
-              <td>Shows current status: Idle, TX (transmitting), WiFi Off, Error, etc.</td>
+              <td>Shows "-" when idle, "TX" with duration (e.g., "15") when transmitting.</td>
             </tr>
             <tr>
               <td><strong>Callsign (Purple)</strong></td>
@@ -499,19 +641,23 @@
             </tr>
             <tr>
               <td><strong>Talk Group (Green)</strong></td>
-              <td>Shows the active talk group or reflector.</td>
+              <td>Shows the active talk group number (e.g., "91").</td>
             </tr>
             <tr>
-              <td><strong>Duration (Blue)</strong></td>
-              <td>Shows the transmission duration in seconds.</td>
+              <td><strong>Name</strong></td>
+              <td>Displays operator name from DMR database.</td>
+            </tr>
+            <tr>
+              <td><strong>Location</strong></td>
+              <td>Shows operator location with scrolling text for long names.</td>
             </tr>
             <tr>
               <td><strong>Date (Grey)</strong></td>
               <td>Displays today's date (updates from NTP server).</td>
             </tr>
             <tr>
-              <td><strong>Bottom Bar (Grey)</strong></td>
-              <td>Reserved for future features. Tap to reconnect WiFi.</td>
+              <td><strong>Connection Info (Grey)</strong></td>
+              <td>Shows PI-Star IP address. Tap to reconnect WiFi.</td>
             </tr>
           </tbody>
         </table>
@@ -519,26 +665,29 @@
 
       <!-- NORMAL OPERATION -->
       <section id="operation" class="section">
-        <h2>5. Normal Operation</h2>
+        <h2>6. Normal Operation</h2>
         <p>Once configured, the Hotspot-Face operates automatically:</p>
         <ul>
           <li>Automatically connects to your saved WiFi network on boot</li>
           <li>Uses mDNS to discover PI-Star if auto-discovery is enabled</li>
           <li>Fetches PI-Star activity data every 500ms for real-time updates</li>
           <li>Displays callsign, talk group, and TX duration when activity is detected</li>
-          <li>Shows "TX" status in red when transmission is active</li>
-          <li>Returns to "Idle" when no activity is present</li>
+          <li>Shows operator name and location from SD card database</li>
+          <li>Scrolls long location names smoothly for full visibility</li>
+          <li>Shows "TX" status with duration number when transmission is active</li>
+          <li>Returns to "-" status when no activity is present</li>
         </ul>
 
         <div class="info-box">
           <strong>Real-time Updates:</strong> The display refreshes twice per second, 
-          ensuring you see DMR activity as it happens.
+          ensuring you see DMR activity as it happens. The SD card database provides 
+          millisecond callsign lookups for instant name and location display.
         </div>
       </section>
 
       <!-- SETTINGS MENU -->
       <section id="settings" class="section">
-        <h2>6. Settings & Options Menu</h2>
+        <h2>7. Settings & Options Menu</h2>
         
         <h3>Accessing Options Menu</h3>
         <p>
@@ -558,6 +707,10 @@
             <tr>
               <td><strong>AP Setup Mode</strong></td>
               <td>Opens the WiFi setup portal to add more networks or change settings.</td>
+            </tr>
+            <tr>
+              <td><strong>Brightness</strong></td>
+              <td>Adjust display brightness level (multiple levels available). Includes automatic brightness adjustment based on your location's sunrise and sunset times.</td>
             </tr>
             <tr>
               <td><strong>Factory Reset</strong></td>
@@ -613,7 +766,22 @@
 
       <!-- ADVANCED FEATURES -->
       <section id="advanced" class="section">
-        <h2>7. Advanced Features</h2>
+        <h2>8. Advanced Features</h2>
+
+        <h3>SD Card DMR Database</h3>
+        <p>
+          The device uses an SD card to store a comprehensive DMR database with 450,000+ callsigns. 
+          The database includes operator names and locations from RadioID.net, providing instant 
+          identification of transmitting stations. Callsign lookups are optimized for millisecond 
+          response times using an efficient indexing system.
+        </p>
+
+        <h3>Scrolling Location Display</h3>
+        <p>
+          When location names are too long to fit on screen, the display automatically scrolls 
+          the text smoothly with a 2-second pause at the start. This ensures full visibility of 
+          location information without truncation.
+        </p>
 
         <h3>mDNS Auto-Discovery</h3>
         <p>
@@ -642,7 +810,7 @@
 
       <!-- FACTORY RESET -->
       <section id="reset" class="section">
-        <h2>8. Factory Reset</h2>
+        <h2>9. Factory Reset</h2>
         
         <div class="warning">
           <strong>⚠️ Warning:</strong> Factory reset will permanently erase all saved WiFi networks, 
@@ -661,7 +829,7 @@
 
       <!-- TROUBLESHOOTING -->
       <section id="trouble" class="section">
-        <h2>9. Troubleshooting</h2>
+        <h2>10. Troubleshooting</h2>
 
         <table>
           <thead>
@@ -719,6 +887,18 @@
                 • Date will appear once NTP sync completes
               </td>
             </tr>
+            <tr>
+              <td><strong>No name/location</strong></td>
+              <td>SD card issue or callsign not in database</td>
+              <td>
+                • Ensure SD card is properly inserted<br>
+                • Check SD card contains <code>dmrids.csv</code> file<br>
+                • Verify filename is exactly <code>dmrids.csv</code> (lowercase)<br>
+                • Verify columns are in alphabetical order<br>
+                • Verify rows are sorted alphabetically by CALLSIGN<br>
+                • Some new callsigns may not be in database yet
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -726,19 +906,19 @@
         <ul>
           <li>Perform a factory reset if settings become corrupted</li>
           <li>Ensure USB-C power supply provides stable 5V</li>
-          <li>Check Serial Monitor output for detailed debug information</li>
           <li>Tap bottom bar to force WiFi reconnection</li>
+          <li>Reformat SD card if database lookups fail</li>
         </ul>
       </section>
 
       <!-- TECH INFO -->
       <section id="technical" class="section">
-        <h2>10. Technical Information</h2>
+        <h2>11. Technical Information</h2>
 
         <h3>Hardware Requirements</h3>
         <ul>
           <li><strong>Display:</strong> 2.8" touchscreen (320×240 resolution)</li>
-          <li><strong>Controller:</strong> microcontroller</li>
+          <li><strong>Storage:</strong> SD card (for DMR database)</li>
           <li><strong>Power:</strong> 5V USB-C (minimum 500mA recommended)</li>
           <li><strong>WiFi:</strong> 2.4GHz 802.11 b/g/n (5GHz not supported)</li>
         </ul>
@@ -746,6 +926,7 @@
         <h3>Software Requirements</h3>
         <ul>
           <li><strong>PI-Star:</strong> Version 3.4 or newer</li>
+          <li><strong>Database:</strong> DMR ID database from RadioID.net</li>
         </ul>
 
         <h3>Network Specifications</h3>
@@ -754,6 +935,14 @@
           <li><strong>AP Mode:</strong> 192.168.4.1 (captive portal)</li>
           <li><strong>Update Rate:</strong> 500ms (2 updates per second)</li>
           <li><strong>Discovery:</strong> mDNS hostnames (pi-star.local)</li>
+        </ul>
+
+        <h3>Database Specifications</h3>
+        <ul>
+          <li><strong>Callsigns:</strong> 450,000+ entries from RadioID.net</li>
+          <li><strong>Lookup Speed:</strong> Millisecond response times</li>
+          <li><strong>Data:</strong> Operator names, cities, country codes</li>
+          <li><strong>Storage:</strong> SD card-based for easy updates</li>
         </ul>
 
         <h3>Memory & Storage</h3>
@@ -765,7 +954,7 @@
 
       <!-- SAFETY -->
       <section id="safety" class="section">
-        <h2>11. Safety & Disclaimers</h2>
+        <h2>12. Safety & Disclaimers</h2>
 
         <div class="warning">
           <strong>⚠️ Important Safety Information</strong>
@@ -789,7 +978,6 @@
 
         <h3>Disclaimers</h3>
         <ul>
-          <li>Device is provided "as-is" without warranty</li>
           <li>User assumes all risk of operation</li>
           <li>Not responsible for damage to PI-Star or connected equipment</li>
           <li>Follow your local amateur radio regulations</li>
@@ -798,22 +986,20 @@
         <h3>Responsible Use</h3>
         <ul>
           <li>Comply with all amateur radio licensing requirements</li>
-          <li>Do not use for commercial purposes without proper authorization</li>
-          <li>Respect other users on shared talk groups</li>
         </ul>
       </section>
 
       <!-- SUPPORT -->
       <section id="support" class="section">
-        <h2>12. Support & Contact</h2>
+        <h2>13. Support & Contact</h2>
 
         <p><strong>Developer:</strong> Robert Eddy (M3URE)</p>
-        <p><strong>Email:</strong> <a href="mailto:roberteddy1234@gmail.com">roberteddy1234@gmail.com</a></p>
+        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#6c1e030e091e18090808155d5e5f582c0b010d0500420f0301"><span class="__cf_email__" data-cfemail="b9cbd6dbdccbcddcddddc0888b8a8df9ded4d8d0d597dad6d4">[email&#160;protected]</span></a></p>
         <p><strong>Callsign:</strong> M3URE</p>
         
         <div class="info-box">
-          <strong>Current Version:</strong> Firmware v41 (Mobile-Optimized) — November 2025<br>
-          <strong>Manual Version:</strong> 2.1 — Updated November 2025
+          <strong>Current Version:</strong> Firmware v44 (SD Card Database) — December 2025<br>
+          <strong>Manual Version:</strong> 2.2 — Updated December 2025
         </div>
 
         <h3>Getting Help</h3>
@@ -825,21 +1011,22 @@
           <li>PI-Star version</li>
           <li>Network configuration (WiFi vs Hotspot mode)</li>
           <li>Any error messages displayed</li>
+          <li>SD card status (if database-related issue)</li>
         </ul>
       </section>
 
     </main>
 
     <footer style="padding:20px;text-align:center;color:var(--text-muted);font-size:12px;border-top:1px solid rgba(148,163,184,0.2);margin-top:40px;">
-      © 2025 Robert Eddy M3URE — Hotspot-Face Manual v2.1<br>
-      <span style="font-size:11px;">Last Updated: November 2025</span>
+      © 2025 Robert Eddy M3URE — Hotspot-Face Manual v2.2<br>
+      <span style="font-size:11px;">Last Updated: December 2025</span>
     </footer>
 
   </div>
 </div>
 
 <!-- THEME TOGGLE SCRIPT -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const toggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
   const themeLabel = document.getElementById("themeLabel");
@@ -851,16 +1038,4 @@
     themeIcon.textContent = dark ? "☀️" : "🌙";
     themeLabel.textContent = dark ? "Light" : "Dark";
 
-    localStorage.setItem("hf-theme", dark ? "dark" : "light");
-  });
-
-  const savedTheme = localStorage.getItem("hf-theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-    themeIcon.textContent = "☀️";
-    themeLabel.textContent = "Light";
-  }
-</script>
-
-</body>
-</html>
+    localStorage.setItem("hf-theme", dark ? "dark"

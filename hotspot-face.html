@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotspot-Face MMDVM Monitor | Real-Time DMR Display</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 2rem 0;
+            background: #e0e0e0;
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #666;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(255,107,107,0.3);
+        }
+
+        .price-detail {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f9f9f9;
+            padding: 3rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Specifications */
+        .specs {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .specs h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+        }
+
+        .specs-list {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .specs-list ul {
+            list-style: none;
+        }
+
+        .specs-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .specs-list strong {
+            color: #667eea;
+            display: inline-block;
+            min-width: 180px;
+        }
+
+        /* Whats Included */
+        .included {
+            background: #f9f9f9;
+            padding: 3rem 0;
+        }
+
+        .included h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+        }
+
+        .included-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .included-box ul {
+            list-style: none;
+        }
+
+        .included-box li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .included-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #51cf66;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .price-badge {
+                font-size: 1.5rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Hotspot-Face MMDVM Monitor</h1>
+            <p>Professional Real-Time DMR Activity Display for Pi-Star Systems</p>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="product-image">
+                    [Product Image - Add your Hotspot-Face photo here]
+                </div>
+                <h2>See Your DMR Activity in Real-Time</h2>
+                <p style="font-size: 1.1rem; margin: 1rem 0; color: #666;">
+                    The Hotspot-Face MMDVM Monitor brings your Pi-Star hotspot to life with instant callsign lookups, 
+                    a vibrant touchscreen display, and effortless WiFi management.
+                </p>
+                <div class="price-badge">£49.99</div>
+                <div class="price-detail">+ postage</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Callsign Database</h3>
+                    <p>SD card with pre-loaded callsign database included. No lag, no waiting for API calls - instant lookups every time.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <h3>Real-Time DMR Activity</h3>
+                    <p>Monitor all DMR traffic on your Pi-Star hotspot with live updates showing callsigns, names, and talkgroup information.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Auto-Discovery</h3>
+                    <p>Automatically finds your Pi-Star system on the network. No complex configuration needed - just plug in and go.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Touchscreen Interface</h3>
+                    <p>Intuitive touchscreen controls for easy navigation and configuration. Professional display with clear, readable information.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📶</div>
+                    <h3>WiFi Management</h3>
+                    <p>Built-in WiFi profile management with web portal. Easily switch between networks or configure new connections.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Plug & Play</h3>
+                    <p>Pre-configured and ready to use. Simply power on, connect to your network, and start monitoring your DMR activity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications -->
+    <section class="specs">
+        <div class="container">
+            <h2>Technical Specifications</h2>
+            <div class="specs-list">
+                <ul>
+                    <li><strong>Display:</strong> Touchscreen TFT</li>
+                    <li><strong>Storage:</strong> SD Card (included with database)</li>
+                    <li><strong>Connectivity:</strong> WiFi 802.11 b/g/n</li>
+                    <li><strong>Power:</strong> USB-C / Micro-USB (5V)</li>
+                    <li><strong>Compatibility:</strong> Pi-Star MMDVM Systems</li>
+                    <li><strong>Configuration:</strong> Web-based portal + touchscreen</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="included">
+        <div class="container">
+            <h2>What's Included</h2>
+            <div class="included-box">
+                <ul>
+                    <li>Hotspot-Face MMDVM Monitor (fully assembled)</li>
+                    <li>SD Card pre-loaded with callsign database</li>
+                    <li>USB power cable</li>
+                    <li>Quick start guide</li>
+                    <li>Access to comprehensive user manual</li>
+                    <li>Technical support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Enhance Your Pi-Star Experience?</h2>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">
+                Order your Hotspot-Face MMDVM Monitor today!
+            </p>
+            <a href="mailto:your-email@example.com?subject=Hotspot-Face Order Enquiry" class="cta-button">
+                Order Now - £49.99
+            </a>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.9;">
+                Questions? Contact us for more information
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Rob M3URE | Amateur Radio Equipment</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="index.html">Home</a> | 
+                <a href="#">User Manual</a> | 
+                <a href="#">Support</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

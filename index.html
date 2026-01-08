@@ -528,15 +528,6 @@
             and download "user.csv" from the file list.
           </li>
           <li>
-            <strong>Download the Latest Database</strong><br>
-            Click this link to download the latest DMR ID database in CSV format:<br>
-            <a href="https://radioid.net/static/user.csv" target="_blank"><strong>https://radioid.net/static/user.csv</strong></a><br>
-            This file is updated daily and contains all registered DMR IDs worldwide (approximately 15 MB). 
-            The download will start automatically when you click the link.<br>
-            <em>Alternative:</em> Visit <a href="https://radioid.net/database/dumps" target="_blank">https://radioid.net/database/dumps</a> 
-            and download "user.csv" from the file list.
-          </li>
-          <li>
             <strong>Remove SD Card</strong><br>
             Power off the Hotspot-Face device and carefully remove the SD card.
           </li>
@@ -994,7 +985,7 @@
         <h2>13. Support & Contact</h2>
 
         <p><strong>Developer:</strong> Robert Eddy (M3URE)</p>
-        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#6c1e030e091e18090808155d5e5f582c0b010d0500420f0301"><span class="__cf_email__" data-cfemail="b9cbd6dbdccbcddcddddc0888b8a8df9ded4d8d0d597dad6d4">[email&#160;protected]</span></a></p>
+        <p><strong>Email:</strong> <a href="mailto:[email protected]">[email protected]</a></p>
         <p><strong>Callsign:</strong> M3URE</p>
         
         <div class="info-box">
@@ -1026,7 +1017,7 @@
 </div>
 
 <!-- THEME TOGGLE SCRIPT -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const toggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
   const themeLabel = document.getElementById("themeLabel");
@@ -1038,4 +1029,17 @@
     themeIcon.textContent = dark ? "☀️" : "🌙";
     themeLabel.textContent = dark ? "Light" : "Dark";
 
-    localStorage.setItem("hf-theme", dark ? "dark"
+    localStorage.setItem("hf-theme", dark ? "dark" : "light");
+  });
+
+  // Load theme from localStorage
+  const savedTheme = localStorage.getItem("hf-theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeIcon.textContent = "☀️";
+    themeLabel.textContent = "Light";
+  }
+</script>
+
+</body>
+</html>

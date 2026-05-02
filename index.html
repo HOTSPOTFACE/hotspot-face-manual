@@ -419,9 +419,9 @@
           monitoring without needing a PC or mobile device.
         </p>
         <p>
-          Callsigns, talk groups, connection status, and TX duration appear instantly on a clean,
+          Callsigns, talk groups, and connection status appear instantly on a clean,
           dedicated display for your shack. The latest version features a polished multi-zone display
-          layout, country flag backgrounds, a comprehensive SD card callsign database, and
+          layout, a country flag box, a comprehensive SD card callsign database, and
           automatic brightness adjustment — all running on a custom low-level firmware for
           maximum reliability and performance.
         </p>
@@ -435,7 +435,7 @@
         <ul>
           <li>2.8" TFT touchscreen (320×240 resolution)</li>
           <li>Polished multi-zone colour layout: header, status, callsign, talk group, name, location, date and connection bars</li>
-          <li>Country flag backgrounds displayed behind the active callsign area during transmissions</li>
+          <li>Country flag box in the bottom-right corner — displays the operator's country flag during transmissions</li>
           <li>Colour-coded status indicators for instant at-a-glance reading</li>
           <li>Real-time DMR activity display with operator names and locations</li>
           <li>Scrolling text for long location and city names</li>
@@ -447,7 +447,7 @@
         <ul>
           <li>SD card-based DMR database with 450,000+ callsigns</li>
           <li>Millisecond callsign lookups</li>
-          <li>Operator first name, surname, city, state, and country from RadioID.net</li>
+          <li>Operator first name, surname, city, state, and country</li>
           <li>Smart location formatting — city, state and country shown where available</li>
         </ul>
 
@@ -521,14 +521,14 @@
 
         <div class="info-box">
           <strong>💾 Included:</strong> Your Hotspot-Face comes with an SD card pre-loaded with a
-          recent DMR database from RadioID.net. The device is ready to display operator names and
+          recent DMR database. The device is ready to display operator names and
           locations out of the box.
         </div>
 
         <h3>What's on the SD Card</h3>
         <p>
           The included SD card contains a DMR ID database file named <code>dmrids.csv</code> with 450,000+
-          callsigns, names, and locations sourced from RadioID.net. The device displays the
+          callsigns, names, and locations. The device displays the
           operator's name, city, state and country during DMR transmissions.
         </p>
 
@@ -545,7 +545,7 @@
         <p>
           Database updates are handled using the <strong>Hotspot-Face SD Card Formatter</strong> software,
           included with your device. The formatter automatically downloads the latest database from
-          RadioID.net, processes it into the correct format, and writes it to your SD card — no manual
+          processes it into the correct format, and writes it to your SD card — no manual
           steps required.
         </p>
 
@@ -559,21 +559,27 @@
       <section id="layout" class="section">
         <h2>5. Display Layout</h2>
 
-        <p>The display is divided into distinct colour-coded zones for instant readability at a glance:</p>
+        <p>The display is divided into distinct colour-coded zones arranged top to bottom, with a flag box in the bottom-right corner:</p>
 
         <!-- Visual diagram of the screen layout -->
         <div class="display-diagram">
-          <div class="dd-row"><div class="dd-cell dd-header" style="flex:1;">HOTSPOT-FACE &nbsp;·&nbsp; HEADER BAR (Blue) — Long-press 3s for menu</div></div>
           <div class="dd-row">
-            <div class="dd-cell dd-status" style="flex:30;">STATUS (Yellow)<br><small>TX / –</small></div>
+            <div class="dd-cell dd-header" style="flex:1;">HOTSPOT-FACE &nbsp;·&nbsp; HEADER BAR (Blue) — Long-press 3s for menu</div>
+          </div>
+          <div class="dd-row">
+            <div class="dd-cell dd-status" style="flex:30;">DMR ID (Yellow)<br><small>DMR ID / scrolls</small></div>
             <div class="dd-cell dd-callsign" style="flex:40;">CALLSIGN (Purple)<br><small>e.g. M3URE</small></div>
             <div class="dd-cell dd-tg" style="flex:30;">TALK GROUP (Green)<br><small>e.g. 91</small></div>
           </div>
           <div class="dd-row"><div class="dd-cell dd-name" style="flex:1;">NAME — Operator first name and surname</div></div>
           <div class="dd-row"><div class="dd-cell dd-location" style="flex:1;">LOCATION — City, state and country &nbsp;〈scrolls if long〉</div></div>
-          <div class="dd-row"><div class="dd-cell dd-date" style="flex:1;">DATE (Grey) — Updated via NTP</div></div>
-          <div class="dd-row"><div class="dd-cell dd-conninfo" style="flex:1;">CONNECTION INFO (Grey) — PI-Star IP · Tap to reconnect</div></div>
-          <div class="dd-flag-note">🏴 Country flag displayed faintly behind the callsign area during active transmissions</div>
+          <div class="dd-row" style="align-items:stretch;">
+            <div style="flex:1;">
+              <div class="dd-cell dd-date" style="width:100%;height:50%;">Date (Light Grey) — Updated via NTP</div>
+              <div class="dd-cell dd-conninfo" style="width:100%;height:50%;">PI-Star IP (Dark Grey) — Tap to reconnect</div>
+            </div>
+            <div class="dd-cell" style="background:#1a1a2e;border:2px solid #555;color:#aaa;width:56px;font-size:11px;flex-shrink:0;justify-content:center;flex-direction:column;">🏴<br>FLAG<br>BOX</div>
+          </div>
         </div>
 
         <table>
@@ -588,17 +594,17 @@
             <tr>
               <td><strong>Header</strong></td>
               <td>Blue</td>
-              <td>Shows device name. Long-press (3 seconds) to access the options menu.</td>
+              <td>Shows the device name. Long-press (3 seconds) to access the options menu.</td>
             </tr>
             <tr>
-              <td><strong>Status</strong></td>
+              <td><strong>DMR ID</strong></td>
               <td>Yellow</td>
-              <td>Shows "–" when idle, "TX" with elapsed seconds when transmitting.</td>
+              <td>Shows the DMR ID of the transmitting station. Scrolls if the ID is long.</td>
             </tr>
             <tr>
               <td><strong>Callsign</strong></td>
               <td>Purple</td>
-              <td>Displays the callsign of the transmitting station. Country flag shown faintly in the background.</td>
+              <td>Displays the callsign of the transmitting station.</td>
             </tr>
             <tr>
               <td><strong>Talk Group</strong></td>
@@ -607,33 +613,37 @@
             </tr>
             <tr>
               <td><strong>Name</strong></td>
-              <td>Dark</td>
-              <td>Displays the operator's first name and surname from the DMR database.</td>
+              <td>Black</td>
+              <td>Upper half of the large box. Displays the operator's first name and surname from the DMR database.</td>
             </tr>
             <tr>
               <td><strong>Location</strong></td>
-              <td>Dark</td>
-              <td>Shows city, state and country. Long names scroll automatically with a pause at the start.</td>
+              <td>Black</td>
+              <td>Lower half of the large box. Shows city, state and country. Scrolls automatically if the text is too wide to fit.</td>
             </tr>
             <tr>
-              <td><strong>Date</strong></td>
-              <td>Grey</td>
-              <td>Displays today's date, updated automatically from NTP.</td>
+              <td><strong>Date bar</strong></td>
+              <td>Light grey</td>
+              <td>Displays today's date, updated automatically via NTP. Spans the width of the screen minus the flag box.</td>
             </tr>
             <tr>
-              <td><strong>Connection Info</strong></td>
-              <td>Grey</td>
-              <td>Shows PI-Star IP address. Tap to trigger a manual WiFi reconnection.</td>
+              <td><strong>PI-Star IP bar</strong></td>
+              <td>Dark grey</td>
+              <td>Shows the PI-Star IP address. Spans the width of the screen minus the flag box.</td>
+            </tr>
+            <tr>
+              <td><strong>Flag box</strong></td>
+              <td>Black with border</td>
+              <td>Bottom-right corner of the screen. Displays the country flag of the transmitting operator during active transmissions.</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>Country Flag Backgrounds</h3>
+        <h3>Country Flag Box</h3>
         <p>
-          When a station transmits, a faint country flag is drawn behind the callsign area based on the
-          operator's country from the DMR database. This gives instant visual context for who is
-          transmitting and where they are from, without cluttering the display. The flag fades naturally
-          into the callsign box colour so readability is always maintained.
+          The flag box sits in the bottom-right corner of the screen, alongside the date and PI-Star IP bars.
+          When a station transmits, the flag for the operator's registered country is drawn inside the box.
+          Over 100 countries are supported. When no transmission is active the box is empty.
         </p>
       </section>
 
@@ -646,11 +656,11 @@
           <li>Automatically connects to your saved WiFi network</li>
           <li>Uses mDNS to discover PI-Star if auto-discovery is enabled</li>
           <li>Fetches PI-Star activity data every 500 ms for real-time updates</li>
-          <li>Displays callsign, talk group, and TX duration when activity is detected</li>
+          <li>Displays callsign and talk group when activity is detected</li>
           <li>Looks up operator name and location from the SD card database instantly</li>
           <li>Shows city, state and country in the location bar — scrolls if too wide to fit</li>
-          <li>Draws the operator's country flag faintly behind the callsign zone</li>
-          <li>Shows "TX" status with elapsed seconds during an active transmission</li>
+          <li>Displays the operator's country flag in the flag box (bottom-right corner) during transmissions</li>
+          <li>Shows "TX" status during an active transmission</li>
           <li>Returns to "–" status when no activity is present</li>
           <li>Adjusts display brightness automatically based on local sunrise and sunset times</li>
         </ul>
@@ -745,13 +755,12 @@
       <section id="advanced" class="section">
         <h2>8. Advanced Features</h2>
 
-        <h3>Country Flag Backgrounds</h3>
+        <h3>Country Flag Box</h3>
         <p>
-          During an active DMR transmission, a country flag matching the operator's registered
-          country is drawn as a faint background behind the callsign zone. Flags are rendered
-          directly on the display using coloured rectangles — no image files are needed. Over 100
-          countries are supported, covering the vast majority of DMR operators worldwide. The flag
-          fades naturally into the zone colour, keeping the callsign clearly readable at all times.
+          During an active DMR transmission, the country flag of the transmitting operator is displayed
+          in the dedicated flag box in the bottom-right corner of the screen. Over 100
+          countries are supported, covering the vast majority of DMR operators worldwide. When no
+          transmission is active the flag box is empty.
         </p>
 
         <h3>Smart Location Display</h3>
@@ -786,14 +795,11 @@
         <h3>Multiple WiFi Profiles</h3>
         <p>
           The device stores up to 10 WiFi networks. You can add networks by entering AP Setup Mode
-          and saving additional credentials without losing existing ones. The device remembers the
+          and saving additional credentials without losing existing ones. You can also delete WiFi profiles you no longer need through the setup portal. The device remembers the
           last successfully connected network and tries that first on boot.
         </p>
 
-        <h3>Automatic Reconnection</h3>
-        <p>
-          If WiFi connection is lost, tap the bottom grey bar to trigger a manual reconnection attempt.
-        </p>
+
       </section>
 
       <!-- FACTORY RESET -->
@@ -899,11 +905,18 @@
           </tbody>
         </table>
 
+        <h3>Soft Reset Button</h3>
+        <p>
+          There is a soft reset button on the back of the device. If the device becomes unresponsive,
+          use a pen to gently press the centre of the button — press carefully to avoid the button
+          getting stuck. You should feel it click on press and release. This will restart the device
+          without affecting any saved settings.
+        </p>
+
         <h3>Additional Tips:</h3>
         <ul>
           <li>Perform a factory reset if settings become corrupted</li>
           <li>Ensure USB-C power supply provides stable 5V</li>
-          <li>Tap the bottom bar to force WiFi reconnection</li>
           <li>Reformat SD card if database lookups fail after verifying the file</li>
         </ul>
       </section>
@@ -925,9 +938,8 @@
 
         <h3>Software</h3>
         <ul>
-          <li><strong>Firmware:</strong> Custom low-level firmware for maximum performance and security</li>
           <li><strong>PI-Star:</strong> Version 3.4 or newer</li>
-          <li><strong>Database:</strong> DMR ID database from RadioID.net in CSV format</li>
+          <li><strong>Database:</strong> DMR ID database in CSV format</li>
         </ul>
 
         <h3>Network Specifications</h3>
@@ -940,7 +952,7 @@
 
         <h3>Database Specifications</h3>
         <ul>
-          <li><strong>Callsigns:</strong> 450,000+ entries from RadioID.net</li>
+          <li><strong>Callsigns:</strong> 450,000+ entries</li>
           <li><strong>Lookup Speed:</strong> Millisecond response times</li>
           <li><strong>Data Fields:</strong> Callsign, first name, surname, city, state, country</li>
           <li><strong>Storage:</strong> SD card-based for straightforward field updates</li>
@@ -950,7 +962,6 @@
         <ul>
           <li><strong>WiFi Profiles:</strong> Stores up to 10 networks</li>
           <li><strong>Retention:</strong> All settings persist across power cycles</li>
-          <li><strong>Battery backup:</strong> Optional LiPo battery — polarity must be verified before connecting</li>
         </ul>
       </section>
 

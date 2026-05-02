@@ -446,7 +446,7 @@
         <h3>Database</h3>
         <ul>
           <li>SD card-based DMR database with 450,000+ callsigns</li>
-          <li>Millisecond callsign lookups using an optimised indexing system</li>
+          <li>Millisecond callsign lookups</li>
           <li>Operator first name, surname, city, state, and country from RadioID.net</li>
           <li>Smart location formatting — city, state and country shown where available</li>
         </ul>
@@ -454,7 +454,7 @@
         <h3>Network</h3>
         <ul>
           <li>2.4 GHz WiFi support</li>
-          <li>Multiple WiFi network profiles (up to 30)</li>
+          <li>Multiple WiFi network profiles (up to 10)</li>
           <li>Auto-discovery of PI-Star devices via mDNS</li>
           <li>Mobile-optimised web configuration interface (captive portal)</li>
           <li>Priority connection — remembers last successful network</li>
@@ -528,9 +528,8 @@
         <h3>What's on the SD Card</h3>
         <p>
           The included SD card contains a DMR ID database file named <code>dmrids.csv</code> with 450,000+
-          callsigns, names, and locations sourced from RadioID.net. The device uses an optimised
-          indexing system to look up any callsign in milliseconds and display the operator's name,
-          city, state and country during DMR transmissions.
+          callsigns, names, and locations sourced from RadioID.net. The device displays the
+          operator's name, city, state and country during DMR transmissions.
         </p>
 
         <h3>When to Update the Database</h3>
@@ -543,84 +542,16 @@
         </ul>
 
         <h3>How to Update the Database</h3>
-        <ol>
-          <li>
-            <strong>Download the Latest Database</strong><br>
-            Click this link to download the latest DMR ID database:<br>
-            <a href="https://radioid.net/static/user.csv" target="_blank"><strong>https://radioid.net/static/user.csv</strong></a><br>
-            This file is updated daily and contains all registered DMR IDs worldwide (approximately 15 MB).<br>
-            <em>Alternative:</em> Visit <a href="https://radioid.net/database/dumps" target="_blank">https://radioid.net/database/dumps</a>
-            and download "user.csv".
-          </li>
-          <li>
-            <strong>Remove SD Card</strong><br>
-            Power off the Hotspot-Face and carefully remove the SD card.
-          </li>
-          <li>
-            <strong>Insert SD Card into PC</strong><br>
-            Use an SD card reader to connect the card to your computer.
-          </li>
-          <li>
-            <strong>Open and Organise the Downloaded Database</strong><br>
-            Open the downloaded CSV file in Excel, LibreOffice Calc, or Google Sheets and organise the data:
-            <ul>
-              <li><strong>Step 1 — Arrange columns in alphabetical order:</strong>
-                <ul>
-                  <li><strong>CALLSIGN</strong> — DMR callsign (e.g., M3URE)</li>
-                  <li><strong>CITY</strong> — Operator's city</li>
-                  <li><strong>COUNTRY</strong> — Country name or abbreviation</li>
-                  <li><strong>FIRST_NAME</strong> — Operator's first name</li>
-                  <li><strong>SURNAME</strong> — Operator's last name</li>
-                </ul>
-              </li>
-              <li>Delete any extra columns not listed above</li>
-              <li>Ensure the first row contains the column headers exactly as shown</li>
-              <li><strong>Step 2 — Sort all rows by CALLSIGN column alphabetically (A–Z)</strong>
-                <ul>
-                  <li><strong>Excel:</strong> Select all data → Data tab → Sort → Sort by CALLSIGN (A to Z)</li>
-                  <li><strong>Google Sheets:</strong> Select all data → Data menu → Sort range → Sort by CALLSIGN (A→Z)</li>
-                  <li><strong>LibreOffice:</strong> Select all data → Data menu → Sort → Sort by CALLSIGN (Ascending)</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>Rename and Save to SD Card</strong><br>
-            <ol style="margin:8px 0 0 0; padding-left:20px;">
-              <li>Save the organised file as a CSV file to your computer</li>
-              <li><strong>Rename the file to <code>dmrids.csv</code></strong> (must be lowercase, no spaces)</li>
-              <li>Copy <code>dmrids.csv</code> to the SD card, replacing the old database file</li>
-            </ol>
-          </li>
-          <li>
-            <strong>Reinsert SD Card</strong><br>
-            Safely eject from your PC, reinsert into the Hotspot-Face, and power on. The new database loads automatically.
-          </li>
-        </ol>
-
-        <div class="warning">
-          <strong>⚠️ Critical Requirements:</strong>
-          <ol style="margin:8px 0 0 0; padding-left:20px;">
-            <li>File must be named exactly <code>dmrids.csv</code> (lowercase, no spaces)</li>
-            <li>Columns must be in alphabetical order: CALLSIGN, CITY, COUNTRY, FIRST_NAME, SURNAME</li>
-            <li>All rows must be sorted alphabetically by CALLSIGN (A–Z)</li>
-          </ol>
-          Incorrect filename, column order, or row sorting will result in no names or locations being displayed.
-        </div>
-
-        <h3>Verifying the Update</h3>
-        <p>After updating and reinserting the SD card, power on the device. You should see operator names and locations displayed during DMR transmissions. If you only see callsigns:</p>
-        <ul>
-          <li>Check that the SD card is properly inserted</li>
-          <li>Verify the file is named exactly <code>dmrids.csv</code> (lowercase)</li>
-          <li>Confirm columns are in alphabetical order (CALLSIGN, CITY, COUNTRY, FIRST_NAME, SURNAME)</li>
-          <li>Confirm all rows are sorted alphabetically by CALLSIGN</li>
-          <li>Ensure the file is saved in CSV format (not XLSX or other formats)</li>
-        </ul>
+        <p>
+          Database updates are handled using the <strong>Hotspot-Face SD Card Formatter</strong> software,
+          included with your device. The formatter automatically downloads the latest database from
+          RadioID.net, processes it into the correct format, and writes it to your SD card — no manual
+          steps required.
+        </p>
 
         <div class="info-box">
-          <strong>💡 Performance:</strong> The optimised indexing system provides millisecond lookup
-          times. A database with 450,000+ entries typically loads in under 10 seconds on startup.
+          <strong>💡 Performance:</strong> A database with 450,000+ entries typically loads in under
+          10 seconds on startup.
         </div>
       </section>
 
@@ -843,8 +774,7 @@
         <h3>SD Card DMR Database</h3>
         <p>
           A comprehensive DMR database with 450,000+ callsigns is stored on the SD card for easy
-          updates. The optimised indexing system allows millisecond lookups across the entire
-          database without loading it entirely into memory.
+          updates. Callsign lookups are fast enough for real-time display without any noticeable delay.
         </p>
 
         <h3>mDNS Auto-Discovery</h3>
@@ -855,7 +785,7 @@
 
         <h3>Multiple WiFi Profiles</h3>
         <p>
-          The device stores up to 30 WiFi networks. You can add networks by entering AP Setup Mode
+          The device stores up to 10 WiFi networks. You can add networks by entering AP Setup Mode
           and saving additional credentials without losing existing ones. The device remembers the
           last successfully connected network and tries that first on boot.
         </p>
@@ -1018,7 +948,7 @@
 
         <h3>Memory &amp; Storage</h3>
         <ul>
-          <li><strong>WiFi Profiles:</strong> Stores up to 30 networks</li>
+          <li><strong>WiFi Profiles:</strong> Stores up to 10 networks</li>
           <li><strong>Retention:</strong> All settings persist across power cycles</li>
           <li><strong>Battery backup:</strong> Optional LiPo battery — polarity must be verified before connecting</li>
         </ul>
